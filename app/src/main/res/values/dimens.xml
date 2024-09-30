@@ -1,0 +1,5 @@
+<resources>
+    <dimen name="global_padding">16dp</dimen>
+    <dimen name="global_margin">16dp</dimen>
+    <dimen name="title_font_size">32sp</dimen>
+</resources>

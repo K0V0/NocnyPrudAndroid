@@ -1,0 +1,22 @@
+<resources>
+    <string name="app_name">NocnyPrud</string>
+
+    <!-- Welcome screen -->
+    <string name="welcome_title">Welcome</string>
+    <string name="welcome_text">Lets begin with setting up Your electric service point</string>
+    <string name="welcome_button_next">Continue</string>
+
+    <!-- Select country screen -->
+    <string name="country_select_title">Pick a country</string>
+    <string name="country_select_button_next">Continue</string>
+
+    <!-- Select electricity provider screen -->
+    <string name="provider_select_title">Pick Your electricity provider</string>
+    <string name="provider_select_button_next">Continue</string>
+
+    <!-- enter service point details screen -->
+    <string name="service_point_detail_title">Service point setup</string>
+    <!-- CZ/CEZ-->
+    <string name="service_point_detail_cz_cez_ean_textfield">EAN Code</string>
+
+</resources>
