@@ -1,13 +1,13 @@
-package space.kovo.nocnyprud2.ui.timetable
+package space.kovo.nocnyprud2.ui
 
 import android.app.Activity
 import android.os.Bundle
 import space.kovo.nocnyprud2.R
 
-class TimetableActivity : Activity() {
+class ProviderSelectActivity : Activity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.timetable)
+        setContentView(R.layout.provider_select)
     }
 }

@@ -1,13 +1,13 @@
-package space.kovo.nocnyprud2.ui.timetable
+package space.kovo.nocnyprud2.ui.servicePointDetails.cz.cez
 
 import android.app.Activity
 import android.os.Bundle
 import space.kovo.nocnyprud2.R
 
-class TimetableActivity : Activity() {
+class ServicePointDetailActivity : Activity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.timetable)
+        setContentView(R.layout.service_point_detail_cz_cez)
     }
 }
