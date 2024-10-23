@@ -2,15 +2,17 @@ package space.kovo.nocnyprud2
 
 import android.app.Activity
 import android.os.Bundle
-import space.kovo.nocnyprud2.ui.CountrySelectActivity
-import space.kovo.nocnyprud2.ui.timetable.TimetableActivity
-import space.kovo.nocnyprud2.ui.utils.handleMoveToNextActivity
+import space.kovo.nocnyprud2.backend.configuration.Values
+import space.kovo.nocnyprud2.ui.activities.timetable.TimetableActivity
+import space.kovo.nocnyprud2.ui.activities.wizard.WelcomeActivity
+import space.kovo.nocnyprud2.ui.utils.moveToActivity
 
 class MainActivity : Activity () {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.welcome)
+        // get application YAML properties
+        Values.getInstance(getApplicationContext())
         this.navigateToNextActivity()
     }
 
@@ -18,9 +20,9 @@ class MainActivity : Activity () {
         // TODO
         val servicePointSetUp: Boolean = false;
         if (servicePointSetUp) {
-            handleMoveToNextActivity<TimetableActivity>()
+            moveToActivity<TimetableActivity>()
         } else {
-            handleMoveToNextActivity<CountrySelectActivity>()
+            moveToActivity<WelcomeActivity>()
         }
     }
 }

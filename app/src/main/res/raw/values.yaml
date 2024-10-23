@@ -1,0 +1,21 @@
+vals:
+  supportedCountries:
+    - id: "cz"
+      name:
+        - lang: "en"
+          value: "Czech Republic"
+        - lang: "sk"
+          value: "Česká Republika"
+        - lang: "cz"
+          value: "Česká Republika"
+      providers:
+        - id: "cez"
+          name:
+            - lang: "en"
+              value: "ČEZ"
+            - lang: "sk"
+              value: "ČEZ"
+            - lang: "cz"
+              value: "ČEZ"
+  other: "something"
+

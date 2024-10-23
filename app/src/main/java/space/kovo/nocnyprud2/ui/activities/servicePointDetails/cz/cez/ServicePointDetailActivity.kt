@@ -1,4 +1,4 @@
-package space.kovo.nocnyprud2.ui.servicePointDetails.cz.cez
+package space.kovo.nocnyprud2.ui.activities.servicePointDetails.cz.cez
 
 import android.app.Activity
 import android.os.Bundle

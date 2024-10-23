@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+
+    <TextView
+            android:text="wizardCountrySelectCountryName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:id="@+id/wizardCountrySelectCountryName"
+            android:padding="@dimen/global_padding_half"/>
+    <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:id="@+id/wizardCountrySelectCountryId"
+            android:visibility="gone"/>
+</LinearLayout>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="horizontal"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent" android:textAlignment="center" android:gravity="center">
+    <TextView
+            android:text="@string/wizard_default_fragment_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:id="@+id/textView2"
+            android:textAlignment="center" android:gravity="center" android:textSize="48sp"/>
+</LinearLayout>

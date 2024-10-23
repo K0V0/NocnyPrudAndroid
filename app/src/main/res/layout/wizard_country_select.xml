@@ -2,28 +2,32 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               android:orientation="vertical"
               android:layout_width="match_parent"
-              android:layout_height="match_parent">
+              android:layout_height="match_parent" android:padding="@dimen/global_padding">
 
     <LinearLayout
             android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="0dp" android:layout_weight="10">
         <TextView
-                android:text="TextView"
+                android:text="@string/country_select_button_next"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" android:id="@+id/textView2"/>
+                android:layout_height="wrap_content" android:id="@+id/selectCountryTitle"
+                android:textSize="@dimen/title_font_size"/>
         <TextView
-                android:text="TextView"
+                android:text="@string/country_select_text"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" android:id="@+id/textView"/>
+                android:layout_height="wrap_content" android:id="@+id/selectCountryText"/>
     </LinearLayout>
     <LinearLayout
             android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content" android:layout_weight="0">
         <Button
                 android:text="Button"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" android:id="@+id/button"/>
+                android:layout_height="wrap_content" android:id="@+id/buttonNext2"/>
     </LinearLayout>
 </LinearLayout>
+
+
+        <!--TODO odjebať do piče -->

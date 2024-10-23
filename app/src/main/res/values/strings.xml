@@ -1,6 +1,9 @@
 <resources>
     <string name="app_name">NocnyPrud</string>
 
+    <!-- Default wizard fragment layout -->
+    <string name="wizard_default_fragment_text">...</string>
+
     <!-- Welcome screen -->
     <string name="welcome_title">Welcome</string>
     <string name="welcome_text">Lets begin with setting up Your electric service point</string>
@@ -8,6 +11,7 @@
 
     <!-- Select country screen -->
     <string name="country_select_title">Pick a country</string>
+    <string name="country_select_text">Pick country where is Your connection to the grid located</string>
     <string name="country_select_button_next">Continue</string>
 
     <!-- Select electricity provider screen -->
