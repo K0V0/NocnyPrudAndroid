@@ -19,7 +19,10 @@
     <string name="provider_select_button_next">Continue</string>
 
     <!-- enter service point details screen -->
-    <string name="service_point_detail_title">Service point setup</string>
+    <string name="service_point_setup_title">Service point setup</string>
+    <string name="service_point_setup_text">Enter the data required to connect to your provider\'s systems</string>
+    <string name="service_point_setup_button_next">Finish setup</string>
+
     <!-- CZ/CEZ-->
     <string name="service_point_detail_cz_cez_ean_textfield">EAN Code</string>
 

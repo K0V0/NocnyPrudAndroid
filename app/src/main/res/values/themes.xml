@@ -1,4 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <style name="Theme.NocnyPrud2" parent="android:Theme.Material.Light.NoActionBar"/>
+
+    <style name="Theme.Wizard.General" parent="Theme.NocnyPrud2">
+        <!--        <item name="android:buttonStyle">@style/Form1ButtonStyle</item>-->
+        <!--        <item name="android:editTextStyle">@style/Form1EditTextStyle</item>-->
+    </style>
+
+    <style name="Theme.Wizard.ServicePointSetup" parent="Theme.Wizard.General">
+<!--        <item name="android:buttonStyle">@style/Form1ButtonStyle</item>-->
+<!--        <item name="android:editTextStyle">@style/Form1EditTextStyle</item>-->
+    </style>
+
+<!--    <style name="Form1ButtonStyle" parent="Widget.MaterialComponents.Button">-->
+<!--        <item name="android:background">#6200EE</item>-->
+<!--        <item name="android:textColor">#FFFFFF</item>-->
+<!--    </style>-->
+
+<!--    <style name="Form1EditTextStyle" parent="Widget.MaterialComponents.TextInputLayout.FilledBox">-->
+<!--        <item name="android:background">#F5F5F5</item>-->
+<!--        <item name="android:textColor">#333333</item>-->
+<!--    </style>-->
+
 </resources>

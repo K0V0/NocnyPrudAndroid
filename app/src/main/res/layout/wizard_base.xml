@@ -7,7 +7,7 @@
     <LinearLayout
             android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="0dp" android:layout_weight="1">
+            android:layout_height="wrap_content" android:layout_weight="0">
         <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" android:id="@+id/wizardBaseTitle"
@@ -19,7 +19,9 @@
     </LinearLayout>
     <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="0dp" android:layout_weight="10" android:id="@+id/contentContainer">
+            android:layout_height="0dp" android:layout_weight="10" android:id="@+id/contentContainer"
+            android:layout_gravity="center" android:paddingTop="@dimen/global_padding_half"
+            android:paddingBottom="@dimen/global_padding_half">
 
     </FrameLayout>
     <LinearLayout
