@@ -1,13 +1,14 @@
 package space.kovo.nocnyprud2.ui.activities.wizard
 
-import android.app.Activity
-import android.os.Bundle
 import space.kovo.nocnyprud2.R
+import space.kovo.nocnyprud2.ui.activities.timetable.TimetableActivity
 
-class ProviderSelectActivity : Activity() {
+class ProviderSelectActivity : WizardActivityBase<TimetableActivity> (
+    R.string.provider_select_title,
+    R.string.provider_select_title,
+    R.string.provider_select_button_next,
+    R.layout.wizard_provider_select_fragment,
+    TimetableActivity::class.java
+) {
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.wizard_provider_select)
-    }
 }

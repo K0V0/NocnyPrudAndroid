@@ -7,12 +7,10 @@ import android.view.ViewGroup
 import android.widget.BaseAdapter
 import android.widget.TextView
 import space.kovo.nocnyprud2.R
-import space.kovo.nocnyprud2.backend.configuration.SupportedCountry
-import space.kovo.nocnyprud2.backend.configuration.Values
+import space.kovo.nocnyprud2.backend.singletons.SupportedCountry
+import space.kovo.nocnyprud2.backend.singletons.Values
 
 class CountrySelectSelectAdapter(applicationContext: Context) : BaseAdapter() {
-
-    // https://abhiandroid.com/ui/listview#gsc.tab=0
 
     private val inflater: LayoutInflater = applicationContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
 
@@ -21,14 +19,14 @@ class CountrySelectSelectAdapter(applicationContext: Context) : BaseAdapter() {
     private val flagResourceIds = ArrayList<Int>()
 
     init {
-        val supportedCountries: List<SupportedCountry> = Values.getValues().supportedCountries;
+        val supportedCountries: List<SupportedCountry> = Values.wizard.supportedCountries;
         for (supportedCountry in supportedCountries) {
             countryIds.add(supportedCountry.id)
             //TODO get system language
-            countryNames.add(supportedCountry.name
-                .map { country -> country.value }
-                .firstOrNull { country -> country.equals("cz") }
-                .toString())
+            countryNames.add(
+                supportedCountry.name
+                    .first { country -> country.lang.equals("cz") }.value
+            )
         }
     }
 
@@ -44,13 +42,13 @@ class CountrySelectSelectAdapter(applicationContext: Context) : BaseAdapter() {
         return p0.toLong()
     }
 
-    override fun getView(i: Int, convertView: View?, viewGroup: ViewGroup?): View {
-        val inflatedListItemView: View = convertView
+    override fun getView(i: Int, recycledView: View?, viewGroup: ViewGroup?): View {
+        val inflatedListItemView: View = recycledView
             ?: inflater.inflate(R.layout.wizard_country_select_fragment_list_item, null)
 
-        convertView?.findViewById<TextView>(R.id.wizardCountrySelectCountryName)
+        inflatedListItemView.findViewById<TextView>(R.id.wizardCountrySelectCountryName)
             ?.setText(countryNames.get(i))
-        convertView?.findViewById<TextView>(R.id.wizardCountrySelectCountryId)
+        inflatedListItemView.findViewById<TextView>(R.id.wizardCountrySelectCountryId)
             ?.setText(countryIds[i])
 
         return inflatedListItemView
