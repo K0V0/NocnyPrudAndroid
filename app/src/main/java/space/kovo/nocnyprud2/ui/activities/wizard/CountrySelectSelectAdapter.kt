@@ -4,13 +4,19 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.AdapterView
+import android.widget.AdapterView.OnItemClickListener
 import android.widget.BaseAdapter
 import android.widget.TextView
 import space.kovo.nocnyprud2.R
 import space.kovo.nocnyprud2.backend.singletons.SupportedCountry
 import space.kovo.nocnyprud2.backend.singletons.Values
 
-class CountrySelectSelectAdapter(applicationContext: Context) : BaseAdapter() {
+class CountrySelectSelectAdapter(
+    val applicationContext: Context//,
+    //val clickListener: AdapterView.OnItemClickListener
+    , val fx: (i: Int) -> Unit
+) : BaseAdapter() {
 
     private val inflater: LayoutInflater = applicationContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
 
@@ -50,6 +56,15 @@ class CountrySelectSelectAdapter(applicationContext: Context) : BaseAdapter() {
             ?.setText(countryNames.get(i))
         inflatedListItemView.findViewById<TextView>(R.id.wizardCountrySelectCountryId)
             ?.setText(countryIds[i])
+
+//        clickListener.onItemClick()
+
+        inflatedListItemView.setOnClickListener {
+            println("inside adapter")
+            fx(i)
+        }
+
+
 
         return inflatedListItemView
     }

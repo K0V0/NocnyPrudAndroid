@@ -1,6 +1,13 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
+//    implementation(libs.navigation.fragment.ktx)
+//    implementation(libs.navigation.ui.ktx)
+//    alias(libs.plugins.kotlin.kapt)
+    //alias(libs.plugins.kotlinKapt)
+    //kotlin("kapt") version "2.0.21"
+//    id("com.google.devtools.ksp")
+    alias(libs.plugins.org.jetbrains.kotlin.kapt)
 }
 
 android {
@@ -27,17 +34,17 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_11
+        targetCompatibility = JavaVersion.VERSION_11
     }
     kotlinOptions {
-        jvmTarget = "1.8"
+        jvmTarget = "11"
     }
     buildFeatures {
         compose = true
     }
     composeOptions {
-        kotlinCompilerExtensionVersion = "1.5.1"
+        kotlinCompilerExtensionVersion = "1.5.7"
     }
     packaging {
         resources {
@@ -68,4 +75,9 @@ dependencies {
     implementation(libs.jackson.databind)
     implementation(libs.jackson.module.kotlin)
     implementation(libs.jackson.dataformat.yaml)
+    implementation(libs.androidx.room.runtime)
+    kapt(libs.androidx.room.compiler.v260)
+    annotationProcessor(libs.androidx.room.compiler)
+    implementation(libs.androidx.room.guava)
+
 }

@@ -10,4 +10,8 @@ class WelcomeActivity : WizardActivityBase<CountrySelectActivity>(
     CountrySelectActivity::class.java
 ) {
 
+    override fun onStart() {
+        super.onStart()
+        super.servicePointService.createDefaultServicePointIfNoneExists()
+    }
 }

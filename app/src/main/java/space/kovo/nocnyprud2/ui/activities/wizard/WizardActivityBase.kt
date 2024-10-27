@@ -4,6 +4,8 @@ import android.app.Activity
 import android.app.FragmentTransaction
 import android.os.Bundle
 import space.kovo.nocnyprud2.R
+import space.kovo.nocnyprud2.backend.services.ServicePointService
+import space.kovo.nocnyprud2.backend.services.ServicePointServiceImpl
 import space.kovo.nocnyprud2.ui.utils.handleMoveToNextActivityButton
 import space.kovo.nocnyprud2.ui.utils.setText
 
@@ -14,6 +16,8 @@ abstract class WizardActivityBase<NEXT_ACTIVITY : Activity>(
     val fragmentLayoutId: Int,
     val nextActivity: Class<NEXT_ACTIVITY>
 ) : Activity() {
+
+    protected val servicePointService: ServicePointService = ServicePointServiceImpl()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,7 +33,7 @@ abstract class WizardActivityBase<NEXT_ACTIVITY : Activity>(
         setText(R.id.wizardBaseButtonNext, buttonLabelResourceId)
         handleMoveToNextActivityButton(nextActivity)
 
-        // insert "child" fragment layount instead of placeholder
+        // insert "child" fragment layout instead of placeholder
         val fragmentTransaction: FragmentTransaction = fragmentManager.beginTransaction()
         fragmentTransaction.replace(R.id.contentContainer, WizardFragmentBase(fragmentLayoutId))
         fragmentTransaction.commit()

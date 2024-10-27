@@ -1,5 +1,6 @@
 package space.kovo.nocnyprud2.ui.activities.wizard
 
+import android.widget.AdapterView
 import android.widget.ListView
 import space.kovo.nocnyprud2.R
 
@@ -17,7 +18,20 @@ class CountrySelectActivity : WizardActivityBase<ProviderSelectActivity>(
     }
 
     private fun loadSupportedCountriesToSelectMenu() {
-        findViewById<ListView>(R.id.wizardCountrySelectListView)
-            .setAdapter(CountrySelectSelectAdapter(this))
+        val listView: ListView = findViewById(R.id.wizardCountrySelectListView)
+        listView.setAdapter(CountrySelectSelectAdapter(
+            this
+
+        ) {
+            println("clicked on country $it")
+        })
+        listView.onItemClickListener = AdapterView.OnItemClickListener { adapterView, view, position, id ->
+            println(position)
+        }
+
+    }
+
+    fun test(i: Int): Unit {
+        println(i)
     }
 }
