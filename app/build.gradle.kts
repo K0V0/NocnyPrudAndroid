@@ -1,12 +1,10 @@
 plugins {
+
+    // default project plugins
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
-//    implementation(libs.navigation.fragment.ktx)
-//    implementation(libs.navigation.ui.ktx)
-//    alias(libs.plugins.kotlin.kapt)
-    //alias(libs.plugins.kotlinKapt)
-    //kotlin("kapt") version "2.0.21"
-//    id("com.google.devtools.ksp")
+
+    // required by ROOM (SQLite) database
     alias(libs.plugins.org.jetbrains.kotlin.kapt)
 }
 
@@ -54,6 +52,7 @@ android {
 }
 
 dependencies {
+
     // default project dependencies
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
@@ -70,14 +69,25 @@ dependencies {
     androidTestImplementation(libs.androidx.ui.test.junit4)
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
+
     // custom added dependencies
+
+    // YAML files support
     implementation(libs.snakeyaml)
+
+    // Jackson and needed formats support
     implementation(libs.jackson.databind)
     implementation(libs.jackson.module.kotlin)
     implementation(libs.jackson.dataformat.yaml)
+
+    // SQLite database
     implementation(libs.androidx.room.runtime)
     kapt(libs.androidx.room.compiler.v260)
     annotationProcessor(libs.androidx.room.compiler)
     implementation(libs.androidx.room.guava)
+    implementation(libs.androidx.room.ktx)
 
+    // viewModels support
+    implementation(libs.androidx.navigation.fragment.ktx)
+    implementation(libs.androidx.navigation.ui.ktx)
 }

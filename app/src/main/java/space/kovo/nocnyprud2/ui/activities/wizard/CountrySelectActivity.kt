@@ -2,7 +2,10 @@ package space.kovo.nocnyprud2.ui.activities.wizard
 
 import android.widget.AdapterView
 import android.widget.ListView
+import androidx.activity.viewModels
 import space.kovo.nocnyprud2.R
+import space.kovo.nocnyprud2.ui.viewModels.wizard.SelectCountryViewModel
+import space.kovo.nocnyprud2.ui.viewModels.wizard.WelcomeViewModel
 
 class CountrySelectActivity : WizardActivityBase<ProviderSelectActivity>(
     R.string.country_select_title,
@@ -11,6 +14,7 @@ class CountrySelectActivity : WizardActivityBase<ProviderSelectActivity>(
     R.layout.wizard_country_select_fragment,
     ProviderSelectActivity::class.java
 ) {
+    private val viewModel: SelectCountryViewModel by viewModels()
 
     override fun onStart() {
         super.onStart()
@@ -18,20 +22,11 @@ class CountrySelectActivity : WizardActivityBase<ProviderSelectActivity>(
     }
 
     private fun loadSupportedCountriesToSelectMenu() {
-        val listView: ListView = findViewById(R.id.wizardCountrySelectListView)
-        listView.setAdapter(CountrySelectSelectAdapter(
-            this
-
-        ) {
-            println("clicked on country $it")
-        })
-        listView.onItemClickListener = AdapterView.OnItemClickListener { adapterView, view, position, id ->
-            println(position)
-        }
-
-    }
-
-    fun test(i: Int): Unit {
-        println(i)
+        findViewById<ListView>(R.id.wizardCountrySelectListView)
+            .setAdapter(CountrySelectSelectAdapter(this) {
+                // item click callback
+                println("clicked on country $it")
+                viewModel.updateCountry(it)
+            })
     }
 }

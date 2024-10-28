@@ -4,8 +4,13 @@ import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
-@Entity
-data class ServicePoint(
+@Entity(
+    tableName = "service_point",
+    indices = [
+        androidx.room.Index(value = ["name"], unique = true)
+    ]
+)
+data class ServicePointEntity(
 
     @PrimaryKey
     val uid: Int,

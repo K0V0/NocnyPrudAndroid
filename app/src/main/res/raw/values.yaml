@@ -1,21 +1,36 @@
-vals:
-  supportedCountries:
-    - id: "cz"
-      name:
-        - lang: "en"
-          value: "Czech Republic"
-        - lang: "sk"
-          value: "Česká Republika"
-        - lang: "cz"
-          value: "Česká Republika"
-      providers:
-        - id: "cez"
-          name:
-            - lang: "en"
-              value: "ČEZ"
-            - lang: "sk"
-              value: "ČEZ"
-            - lang: "cz"
-              value: "ČEZ"
-  other: "something"
-
+supportedCountries:
+  - id: "cz"
+    name:
+      - lang: "en"
+        value: "Czech Republic"
+      - lang: "sk"
+        value: "Česká Republika"
+      - lang: "cz"
+        value: "Česká Republika"
+    providers:
+      - id: "cez"
+        name:
+          - lang: "en"
+            value: "ČEZ"
+          - lang: "sk"
+            value: "ČEZ"
+          - lang: "cz"
+            value: "ČEZ"
+  - id: "sk"
+    name:
+      - lang: "en"
+        value: "Slovak Republic"
+      - lang: "sk"
+        value: "Slovenská Republika"
+      - lang: "cz"
+        value: "Slovenská Republika"
+    providers:
+      - id: "sse"
+        name:
+          - lang: "en"
+            value: "SSE"
+          - lang: "sk"
+            value: "SSE"
+          - lang: "cz"
+            value: "SSE"
+other: "something"

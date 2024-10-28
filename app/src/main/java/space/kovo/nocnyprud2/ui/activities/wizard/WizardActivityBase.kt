@@ -1,23 +1,23 @@
 package space.kovo.nocnyprud2.ui.activities.wizard
 
-import android.app.Activity
 import android.app.FragmentTransaction
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import space.kovo.nocnyprud2.R
-import space.kovo.nocnyprud2.backend.services.ServicePointService
-import space.kovo.nocnyprud2.backend.services.ServicePointServiceImpl
+import space.kovo.nocnyprud2.backend.repositories.ServicePointRepository
+import space.kovo.nocnyprud2.backend.repositories.ServicePointRepositoryImpl
 import space.kovo.nocnyprud2.ui.utils.handleMoveToNextActivityButton
 import space.kovo.nocnyprud2.ui.utils.setText
 
-abstract class WizardActivityBase<NEXT_ACTIVITY : Activity>(
+abstract class WizardActivityBase<NEXT_ACTIVITY : AppCompatActivity>(
     val titleResourceId: Int,
     val textResourceId: Int,
     val buttonLabelResourceId: Int,
     val fragmentLayoutId: Int,
     val nextActivity: Class<NEXT_ACTIVITY>
-) : Activity() {
+) : AppCompatActivity() {
 
-    protected val servicePointService: ServicePointService = ServicePointServiceImpl()
+    protected val servicePointRepository: ServicePointRepository = ServicePointRepositoryImpl()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

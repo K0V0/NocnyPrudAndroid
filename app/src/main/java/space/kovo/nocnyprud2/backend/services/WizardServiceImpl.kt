@@ -1,12 +1,15 @@
 package space.kovo.nocnyprud2.backend.services
 
+import space.kovo.nocnyprud2.backend.repositories.ServicePointRepository
+import space.kovo.nocnyprud2.backend.repositories.ServicePointRepositoryImpl
+
 class WizardServiceImpl : WizardService {
 
     //TODO Still in 2024 IOC container/dependency injection not present in android
     // resolve this cyka somehow (libs exists) blyat
-    val servicePointService: ServicePointService = ServicePointServiceImpl()
+    val servicePointRepository: ServicePointRepository = ServicePointRepositoryImpl()
 
-    override fun performStartupActions() {
-        servicePointService.createDefaultServicePointIfNoneExists()
+    override suspend fun performStartupActions() {
+        servicePointRepository.getOrCreateDefaultServicePoint()
     }
 }
