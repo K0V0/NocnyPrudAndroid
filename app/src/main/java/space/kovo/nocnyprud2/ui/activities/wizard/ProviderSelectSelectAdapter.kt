@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import android.widget.BaseAdapter
 import android.widget.TextView
 import space.kovo.nocnyprud2.R
-import space.kovo.nocnyprud2.backend.singletons.Provider
+import space.kovo.nocnyprud2.backend.entities.yamlValues.ProviderEntity
 import space.kovo.nocnyprud2.backend.singletons.Values
 
 class ProviderSelectSelectAdapter(applicationContext: Context) : BaseAdapter() {
@@ -20,7 +20,7 @@ class ProviderSelectSelectAdapter(applicationContext: Context) : BaseAdapter() {
 
     init {
         //TODO na vsetky taketo operacie s datami z YAML napisat nejaku util classu
-        val availableProviders: List<Provider> = Values.wizard.supportedCountries.get(0).providers;
+        val availableProviders: List<ProviderEntity> = Values.wizard.supportedCountries.get(0).providers;
         for (provider in availableProviders) {
             providerIds.add(provider.id)
             //TODO get system language

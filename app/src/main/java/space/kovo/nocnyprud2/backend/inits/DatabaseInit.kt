@@ -3,12 +3,12 @@ package space.kovo.nocnyprud2.backend.inits
 import android.content.Context
 import androidx.room.Room
 import space.kovo.nocnyprud2.backend.configurations.AppDatabase
-import space.kovo.nocnyprud2.backend.singletons.DB
+import space.kovo.nocnyprud2.backend.singletons.Database
 
-class DBInit: Init {
+class DatabaseInit: Init {
 
     override fun init(context: Context) {
-        DB.instance = Room
+        Database.instance = Room
             .databaseBuilder(
                 context,
                 AppDatabase::class.java,

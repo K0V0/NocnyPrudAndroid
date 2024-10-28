@@ -1,4 +1,4 @@
-package space.kovo.nocnyprud2.backend.entities
+package space.kovo.nocnyprud2.backend.entities.database
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity

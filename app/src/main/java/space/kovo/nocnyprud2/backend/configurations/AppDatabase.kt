@@ -3,7 +3,7 @@ package space.kovo.nocnyprud2.backend.configurations
 import androidx.room.Database
 import androidx.room.RoomDatabase
 import space.kovo.nocnyprud2.backend.daos.ServicePointDao
-import space.kovo.nocnyprud2.backend.entities.ServicePointEntity
+import space.kovo.nocnyprud2.backend.entities.database.ServicePointEntity
 
 @Database(
     entities = [

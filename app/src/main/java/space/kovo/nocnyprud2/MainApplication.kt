@@ -1,17 +1,15 @@
 package space.kovo.nocnyprud2
 
 import android.app.Application
-import space.kovo.nocnyprud2.backend.inits.DBInit
-import space.kovo.nocnyprud2.backend.inits.Init
-import space.kovo.nocnyprud2.backend.inits.ValuesInit
-import space.kovo.nocnyprud2.backend.inits.YamlMapperInit
+import space.kovo.nocnyprud2.backend.inits.*
 
 class MainApplication : Application() {
 
     private val inits: List<Init> = listOf(
-        DBInit(),
+        SettingsStorageInit(),
+        DatabaseInit(),
         YamlMapperInit(),
-        ValuesInit()
+        YamlValuesInit()
     )
 
     override fun onCreate() {

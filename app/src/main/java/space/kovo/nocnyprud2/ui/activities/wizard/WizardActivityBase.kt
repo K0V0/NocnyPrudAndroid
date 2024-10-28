@@ -4,8 +4,8 @@ import android.app.FragmentTransaction
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import space.kovo.nocnyprud2.R
-import space.kovo.nocnyprud2.backend.repositories.ServicePointRepository
-import space.kovo.nocnyprud2.backend.repositories.ServicePointRepositoryImpl
+import space.kovo.nocnyprud2.backend.repositories.database.ServicePointRepository
+import space.kovo.nocnyprud2.backend.repositories.database.ServicePointRepositoryImpl
 import space.kovo.nocnyprud2.ui.utils.handleMoveToNextActivityButton
 import space.kovo.nocnyprud2.ui.utils.setText
 

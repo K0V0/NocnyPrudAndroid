@@ -87,6 +87,9 @@ dependencies {
     implementation(libs.androidx.room.guava)
     implementation(libs.androidx.room.ktx)
 
+    // DataStore (settings storage)
+    implementation(libs.androidx.datastore.preferences)
+
     // viewModels support
     implementation(libs.androidx.navigation.fragment.ktx)
     implementation(libs.androidx.navigation.ui.ktx)

@@ -2,7 +2,7 @@ package space.kovo.nocnyprud2.backend.daos
 
 import androidx.room.Dao
 import androidx.room.Query
-import space.kovo.nocnyprud2.backend.entities.ServicePointEntity
+import space.kovo.nocnyprud2.backend.entities.database.ServicePointEntity
 
 @Dao
 interface ServicePointDao {

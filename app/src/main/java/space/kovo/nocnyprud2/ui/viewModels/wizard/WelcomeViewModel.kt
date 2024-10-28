@@ -3,8 +3,8 @@ package space.kovo.nocnyprud2.ui.viewModels.wizard
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.launch
-import space.kovo.nocnyprud2.backend.repositories.ServicePointRepository
-import space.kovo.nocnyprud2.backend.repositories.ServicePointRepositoryImpl
+import space.kovo.nocnyprud2.backend.repositories.database.ServicePointRepository
+import space.kovo.nocnyprud2.backend.repositories.database.ServicePointRepositoryImpl
 
 class WelcomeViewModel : ViewModel() {
 

@@ -1,6 +1,6 @@
-package space.kovo.nocnyprud2.backend.repositories
+package space.kovo.nocnyprud2.backend.repositories.database
 
-import space.kovo.nocnyprud2.backend.entities.ServicePointEntity
+import space.kovo.nocnyprud2.backend.entities.database.ServicePointEntity
 
 interface ServicePointRepository {
 

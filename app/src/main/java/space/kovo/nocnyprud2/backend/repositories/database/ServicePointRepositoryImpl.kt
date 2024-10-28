@@ -1,13 +1,13 @@
-package space.kovo.nocnyprud2.backend.repositories
+package space.kovo.nocnyprud2.backend.repositories.database
 
 import space.kovo.nocnyprud2.backend.daos.ServicePointDao
-import space.kovo.nocnyprud2.backend.entities.ServicePointEntity
-import space.kovo.nocnyprud2.backend.singletons.DB
+import space.kovo.nocnyprud2.backend.entities.database.ServicePointEntity
+import space.kovo.nocnyprud2.backend.singletons.Database
 
 class ServicePointRepositoryImpl: ServicePointRepository {
 
     // ok, it just lazy loading reference to singleton ROOM database instance
-    val servicePointDao: ServicePointDao by lazy { DB.instance!!.servicePointDao() }
+    val servicePointDao: ServicePointDao by lazy { Database.instance!!.servicePointDao() }
 
     override suspend fun getOrCreateDefaultServicePoint(): ServicePointEntity {
         val entity: ServicePointEntity? = servicePointDao.getDefault()
