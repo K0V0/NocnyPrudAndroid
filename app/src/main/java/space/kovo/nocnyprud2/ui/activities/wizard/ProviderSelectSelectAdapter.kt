@@ -7,7 +7,7 @@ import android.widget.BaseAdapter
 import android.widget.TextView
 import androidx.activity.viewModels
 import space.kovo.nocnyprud2.R
-import space.kovo.nocnyprud2.backend.entities.yamlValues.ProviderEntity
+import space.kovo.nocnyprud2.backend.entities.yamlValues.ProviderYmlEntity
 import space.kovo.nocnyprud2.ui.viewModels.wizard.ProviderSelectViewModel
 
 class ProviderSelectSelectAdapter(providerSelectActivity: ProviderSelectActivity) : BaseAdapter() {
@@ -49,7 +49,7 @@ class ProviderSelectSelectAdapter(providerSelectActivity: ProviderSelectActivity
         return inflatedListItemView
     }
 
-    private fun updateItems(availableProviders: List<ProviderEntity>) {
+    private fun updateItems(availableProviders: List<ProviderYmlEntity>) {
         for (provider in availableProviders) {
             providerIds.add(provider.id)
             //TODO get system language

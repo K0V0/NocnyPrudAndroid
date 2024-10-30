@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import android.widget.BaseAdapter
 import android.widget.TextView
 import space.kovo.nocnyprud2.R
-import space.kovo.nocnyprud2.backend.entities.yamlValues.SupportedCountryEntity
+import space.kovo.nocnyprud2.backend.entities.yamlValues.SupportedCountryYmlEntity
 import space.kovo.nocnyprud2.backend.singletons.Values
 
 class CountrySelectSelectAdapter(
@@ -23,7 +23,7 @@ class CountrySelectSelectAdapter(
     private val flagResourceIds = ArrayList<Int>()
 
     init {
-        val supportedCountries: List<SupportedCountryEntity> = Values.wizard.supportedCountries;
+        val supportedCountries: List<SupportedCountryYmlEntity> = Values.wizard.supportedCountries;
         for (supportedCountry in supportedCountries) {
             countryCodes.add(supportedCountry.id)
             //TODO get system language

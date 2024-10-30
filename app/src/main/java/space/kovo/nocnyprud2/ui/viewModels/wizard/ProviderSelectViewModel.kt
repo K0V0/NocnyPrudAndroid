@@ -2,7 +2,7 @@ package space.kovo.nocnyprud2.ui.viewModels.wizard
 
 import androidx.lifecycle.*
 import kotlinx.coroutines.launch
-import space.kovo.nocnyprud2.backend.entities.yamlValues.ProviderEntity
+import space.kovo.nocnyprud2.backend.entities.yamlValues.ProviderYmlEntity
 import space.kovo.nocnyprud2.backend.repositories.database.ServicePointRepository
 import space.kovo.nocnyprud2.backend.repositories.database.ServicePointRepositoryImpl
 import space.kovo.nocnyprud2.backend.repositories.settingsStorage.SettingsStorageRepository
@@ -21,7 +21,7 @@ class ProviderSelectViewModel : ViewModel() {
 
     private val _countryCode = MutableLiveData<String>()
     private val _providerCode = MutableLiveData<String>()
-    private val _availableProviders = MediatorLiveData<List<ProviderEntity>>()
+    private val _availableProviders = MediatorLiveData<List<ProviderYmlEntity>>()
 
     init {
         viewModelScope.launch {
@@ -38,7 +38,7 @@ class ProviderSelectViewModel : ViewModel() {
     val providerCode: LiveData<String>
         get() = _providerCode
 
-    val availableProviders: LiveData<List<ProviderEntity>>
+    val availableProviders: LiveData<List<ProviderYmlEntity>>
         get() = _availableProviders
 
     fun updateProvider(newProviderCode: String) {
