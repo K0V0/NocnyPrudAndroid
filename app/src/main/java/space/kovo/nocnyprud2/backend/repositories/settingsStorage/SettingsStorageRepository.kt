@@ -8,8 +8,8 @@ interface SettingsStorageRepository {
     suspend fun getInt(key: String): Int?
 
     suspend fun setServicePointCountry(countryCode: String)
-    suspend fun getServicePointCountry(): String?
+    suspend fun getServicePointCountry(): String
 
     suspend fun setServicePointProvider(providerCode: String)
-    suspend fun getServicePointProvider(): String?
+    suspend fun getServicePointProvider(): String
 }

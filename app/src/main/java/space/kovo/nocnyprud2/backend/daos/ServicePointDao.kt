@@ -20,6 +20,9 @@ interface ServicePointDao {
     @Query("UPDATE service_point SET countrycode = :countryCode WHERE name LIKE '$DEFAULT_NAME'")
     suspend fun updateDefaultCountry(countryCode: String)
 
+    @Query("UPDATE service_point SET providercode = :providerCode WHERE name LIKE '$DEFAULT_NAME'")
+    suspend fun updateDefaultProvider(providerCode: String)
+
     @Query("SELECT * FROM service_point WHERE name LIKE :name LIMIT 1")
     suspend fun findByName(name: String): ServicePointEntity?
 

@@ -1,33 +1,26 @@
 package space.kovo.nocnyprud2.ui.activities.wizard
 
-import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.BaseAdapter
 import android.widget.TextView
+import androidx.activity.viewModels
 import space.kovo.nocnyprud2.R
 import space.kovo.nocnyprud2.backend.entities.yamlValues.ProviderEntity
-import space.kovo.nocnyprud2.backend.singletons.Values
+import space.kovo.nocnyprud2.ui.viewModels.wizard.ProviderSelectViewModel
 
-class ProviderSelectSelectAdapter(applicationContext: Context) : BaseAdapter() {
+class ProviderSelectSelectAdapter(providerSelectActivity: ProviderSelectActivity) : BaseAdapter() {
 
-    private val inflater: LayoutInflater = applicationContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
+    private val viewModel: ProviderSelectViewModel by  providerSelectActivity.viewModels()
 
     private val providerIds = ArrayList<String>()
     private val providerNames = ArrayList<String>()
     private val providerLogoResourceIds = ArrayList<Int>()
 
     init {
-        //TODO na vsetky taketo operacie s datami z YAML napisat nejaku util classu
-        val availableProviders: List<ProviderEntity> = Values.wizard.supportedCountries.get(0).providers;
-        for (provider in availableProviders) {
-            providerIds.add(provider.id)
-            //TODO get system language
-            providerNames.add(
-                provider.name
-                    .first { country -> country.lang.equals("cz") }.value
-            )
+        viewModel.availableProviders.observe(providerSelectActivity) {
+                providers -> this.updateItems(providers)
         }
     }
 
@@ -45,7 +38,8 @@ class ProviderSelectSelectAdapter(applicationContext: Context) : BaseAdapter() {
 
     override fun getView(i: Int, recycledView: View?, viewGroup: ViewGroup?): View {
         val inflatedListItemView: View = recycledView
-            ?: inflater.inflate(R.layout.wizard_provider_select_fragment_list_item, null)
+            ?: LayoutInflater.from(viewGroup?.context)
+                .inflate(R.layout.wizard_provider_select_fragment_list_item, null)
 
         inflatedListItemView.findViewById<TextView>(R.id.wizardProviderSelectCountryName)
             ?.setText(providerNames.get(i))
@@ -53,5 +47,17 @@ class ProviderSelectSelectAdapter(applicationContext: Context) : BaseAdapter() {
             ?.setText(providerIds[i])
 
         return inflatedListItemView
+    }
+
+    private fun updateItems(availableProviders: List<ProviderEntity>) {
+        for (provider in availableProviders) {
+            providerIds.add(provider.id)
+            //TODO get system language
+            providerNames.add(
+                provider.name
+                    .first { country -> country.lang.equals("cz") }.value
+            )
+        }
+        super.notifyDataSetChanged()
     }
 }

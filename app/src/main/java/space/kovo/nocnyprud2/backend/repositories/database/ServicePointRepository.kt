@@ -7,4 +7,6 @@ interface ServicePointRepository {
     suspend fun getOrCreateDefaultServicePoint(): ServicePointEntity
 
     suspend fun setCountryForDefaultServicePoint(countryCode: String)
+
+    suspend fun setProviderForDefaultServicePoint(providerCode: String)
 }
