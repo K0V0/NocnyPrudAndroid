@@ -12,8 +12,6 @@ class CountrySelectActivity : WizardActivityBase<ProviderSelectActivity>(
     R.layout.wizard_country_select_fragment,
     ProviderSelectActivity::class.java
 ) {
-    private val viewModel: CountrySelectViewModel by viewModels()
-
     override fun onStart() {
         super.onStart()
         this.loadSupportedCountriesToSelectMenu()
@@ -21,10 +19,6 @@ class CountrySelectActivity : WizardActivityBase<ProviderSelectActivity>(
 
     private fun loadSupportedCountriesToSelectMenu() {
         findViewById<ListView>(R.id.wizardCountrySelectListView)
-            .setAdapter(CountrySelectSelectAdapter(this) {
-                // item click callback
-                println("clicked on country $it")
-                viewModel.updateCountry(it)
-            })
+            .setAdapter(CountrySelectSelectAdapter(this))
     }
 }

@@ -1,36 +1,32 @@
 package space.kovo.nocnyprud2.ui.activities.wizard
 
-import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.BaseAdapter
+import android.widget.CheckBox
 import android.widget.TextView
+import androidx.activity.viewModels
+import com.orhanobut.logger.Logger
 import space.kovo.nocnyprud2.R
-import space.kovo.nocnyprud2.backend.entities.yamlValues.SupportedCountryYmlEntity
-import space.kovo.nocnyprud2.backend.singletons.Values
+import space.kovo.nocnyprud2.backend.dtos.yamlValues.SupportedCountryYmlDto
+import space.kovo.nocnyprud2.ui.viewModels.wizard.CountrySelectViewModel
 
 class CountrySelectSelectAdapter(
-    val applicationContext: Context//,
-    //val clickListener: AdapterView.OnItemClickListener
-    , val fx: (countryCode: String) -> Unit
+    val countrySelectActivity: CountrySelectActivity
 ) : BaseAdapter() {
 
-    private val inflater: LayoutInflater = applicationContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
+    private val viewModel: CountrySelectViewModel by countrySelectActivity.viewModels()
 
     private val countryCodes = ArrayList<String>()
     private val countryNames = ArrayList<String>()
     private val flagResourceIds = ArrayList<Int>()
 
     init {
-        val supportedCountries: List<SupportedCountryYmlEntity> = Values.wizard.supportedCountries;
-        for (supportedCountry in supportedCountries) {
-            countryCodes.add(supportedCountry.id)
-            //TODO get system language
-            countryNames.add(
-                supportedCountry.name
-                    .first { country -> country.lang.equals("cz") }.value
-            )
+        Logger.d("adapter init")
+        viewModel.supportedCountries.observe(countrySelectActivity) {
+            countries -> this.updateItems(countries)
+            super.notifyDataSetChanged()
         }
     }
 
@@ -47,19 +43,30 @@ class CountrySelectSelectAdapter(
     }
 
     override fun getView(i: Int, recycledView: View?, viewGroup: ViewGroup?): View {
+
         val inflatedListItemView: View = recycledView
-            ?: inflater.inflate(R.layout.wizard_country_select_fragment_list_item, null)
+            ?: LayoutInflater.from(viewGroup?.context)
+                .inflate(R.layout.wizard_country_select_fragment_list_item, null)
 
         inflatedListItemView.findViewById<TextView>(R.id.wizardCountrySelectCountryName)
             ?.setText(countryNames.get(i))
         inflatedListItemView.findViewById<TextView>(R.id.wizardCountrySelectCountryId)
             ?.setText(countryCodes[i])
+        inflatedListItemView.findViewById<CheckBox>(R.id.wizardCountrySelectCheckBox).isChecked =
+            viewModel.countryCode.value.equals(countryCodes[i])
 
         inflatedListItemView.setOnClickListener {
-            println("inside adapter")
-            fx(countryCodes[i])
+            viewModel.updateCountry(countryCodes[i])
+            super.notifyDataSetChanged()
         }
 
         return inflatedListItemView
+    }
+
+    fun updateItems(supportedCountries: List<SupportedCountryYmlDto>) {
+        for (supportedCountry in supportedCountries) {
+            countryCodes.add(supportedCountry.code)
+            countryNames.add(supportedCountry.name)
+        }
     }
 }

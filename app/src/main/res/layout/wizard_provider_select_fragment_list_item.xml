@@ -2,15 +2,23 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               android:orientation="vertical"
               android:layout_width="match_parent"
-              android:layout_height="match_parent">
+              android:layout_height="64dp" android:gravity="center_vertical">
 
-    <TextView
-            android:text="wizardCountrySelectCountryName"
+    <LinearLayout
+            android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" android:id="@+id/wizardProviderSelectCountryName"
-            android:padding="@dimen/global_padding_half"/>
-    <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" android:id="@+id/wizardProviderSelectCountryId"
-            android:visibility="gone"/>
+            android:layout_height="match_parent" android:gravity="center_vertical">
+        <CheckBox
+                android:layout_width="32dp"
+                android:layout_height="32dp" android:id="@+id/wizardProviderSelectCheckBox" android:layout_weight="1"/>
+        <TextView
+                android:text="provider name short"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" android:id="@+id/wizardProviderSelectProviderName"
+                android:padding="@dimen/global_padding_half" android:layout_weight="100" android:textSize="24sp"/>
+        <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" android:id="@+id/wizardProviderSelectProviderId"
+                android:visibility="gone"/>
+    </LinearLayout>
 </LinearLayout>

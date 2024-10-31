@@ -12,4 +12,6 @@ interface SettingsStorageRepository {
 
     suspend fun setServicePointProvider(providerCode: String)
     suspend fun getServicePointProvider(): String
+
+    suspend fun getAll(): List<*>
 }

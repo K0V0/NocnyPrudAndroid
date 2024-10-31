@@ -7,19 +7,18 @@ import androidx.datastore.preferences.core.stringPreferencesKey
 import com.orhanobut.logger.Logger
 import kotlinx.coroutines.flow.first
 import space.kovo.nocnyprud2.backend.singletons.SettingsStorage
+import kotlin.reflect.KClass
 
 class SettingsStorageRepositoryImpl : SettingsStorageRepository {
 
     companion object {
-        private const val DEFAULT_VAL__COUNTRY_CODE = "cz"
-
         private const val SERVICE_POINT: String = "service_point"
         private val SERVICE_POINT_COUNTRY_CODE = SERVICE_POINT + "country_code"
         private val SERVICE_POINT_PROVIDER_CODE = SERVICE_POINT + "provider_code"
 
-        private val keysMap: List<String> = listOf(
-            SERVICE_POINT_COUNTRY_CODE,
-            SERVICE_POINT_PROVIDER_CODE,
+        private val keysMap: Map<String, KClass<*>> = mapOf(
+            Pair(SERVICE_POINT_COUNTRY_CODE, String::class),
+            SERVICE_POINT_PROVIDER_CODE to String::class
         )
     }
 
@@ -59,6 +58,15 @@ class SettingsStorageRepositoryImpl : SettingsStorageRepository {
         return getString(SERVICE_POINT_PROVIDER_CODE)!!
     }
 
+    override suspend fun getAll(): List<*> {
+        return keysMap.map {
+            pair -> when (pair.value) {
+                String::class -> getString(pair.key)
+                Int::class -> getInt(pair.key)
+                else -> getString(pair.key)
+            }
+        }
+    }
 
 
     private suspend fun <T> putValue(key: Preferences.Key<T>, value: T) {

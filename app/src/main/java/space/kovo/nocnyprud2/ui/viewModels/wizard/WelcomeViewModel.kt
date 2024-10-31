@@ -1,20 +1,21 @@
 package space.kovo.nocnyprud2.ui.viewModels.wizard
 
-import androidx.lifecycle.ViewModel
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
+import com.orhanobut.logger.Logger
 import kotlinx.coroutines.launch
-import space.kovo.nocnyprud2.backend.repositories.database.ServicePointRepository
-import space.kovo.nocnyprud2.backend.repositories.database.ServicePointRepositoryImpl
+import space.kovo.nocnyprud2.backend.entities.database.ServicePointEntity
 
-class WelcomeViewModel : ViewModel() {
+class WelcomeViewModel : WizardViewModelBase() {
 
-    //TODO dependency injection
-    private val servicePointRepository: ServicePointRepository = ServicePointRepositoryImpl()
+    //private val _servicePointEntity = MutableLiveData<ServicePointEntity>()
 
     init {
         // async
         viewModelScope.launch {
-            servicePointRepository.getOrCreateDefaultServicePoint()
+            //TODO nechce logovať
+            Logger.d("Current settings stored: " + settingsStorageRepository.getAll().toString())
+            //_servicePointEntity.value = servicePointRepository.getOrCreateDefaultServicePoint()
         }
     }
 }

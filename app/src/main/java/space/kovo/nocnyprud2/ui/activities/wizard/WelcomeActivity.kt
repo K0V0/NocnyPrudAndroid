@@ -12,4 +12,13 @@ class WelcomeActivity : WizardActivityBase<CountrySelectActivity>(
     CountrySelectActivity::class.java
 ) {
     private val viewModel: WelcomeViewModel by viewModels()
+
+    override fun onStart() {
+        super.onStart()
+        logDataSources()
+    }
+
+    private fun logDataSources() {
+
+    }
 }

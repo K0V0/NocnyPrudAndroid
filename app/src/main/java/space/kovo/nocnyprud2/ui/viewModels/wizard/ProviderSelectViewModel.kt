@@ -1,33 +1,26 @@
 package space.kovo.nocnyprud2.ui.viewModels.wizard
 
-import androidx.lifecycle.*
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MediatorLiveData
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.launch
-import space.kovo.nocnyprud2.backend.entities.yamlValues.ProviderYmlEntity
-import space.kovo.nocnyprud2.backend.repositories.database.ServicePointRepository
-import space.kovo.nocnyprud2.backend.repositories.database.ServicePointRepositoryImpl
-import space.kovo.nocnyprud2.backend.repositories.settingsStorage.SettingsStorageRepository
-import space.kovo.nocnyprud2.backend.repositories.settingsStorage.SettingsStorageRepositoryImpl
-import space.kovo.nocnyprud2.backend.repositories.yamlValues.YamlValuesRepository
-import space.kovo.nocnyprud2.backend.repositories.yamlValues.YamlValuesRepositoryImpl
+import space.kovo.nocnyprud2.backend.converters.yamlValues.YamlValuesConverter
+import space.kovo.nocnyprud2.backend.dtos.yamlValues.ProviderYmlDto
 
-class ProviderSelectViewModel : ViewModel() {
-
-    companion object {
-        //TODO dependency injection somehow
-        private val servicePointRepository: ServicePointRepository = ServicePointRepositoryImpl()
-        private val settingsStorageRepository: SettingsStorageRepository = SettingsStorageRepositoryImpl()
-        private val yamlValuesRepository: YamlValuesRepository = YamlValuesRepositoryImpl()
-    }
+class ProviderSelectViewModel : WizardViewModelBase() {
 
     private val _countryCode = MutableLiveData<String>()
     private val _providerCode = MutableLiveData<String>()
-    private val _availableProviders = MediatorLiveData<List<ProviderYmlEntity>>()
+    private val _availableProviders = MediatorLiveData<List<ProviderYmlDto>>()
 
     init {
         viewModelScope.launch {
             _countryCode.value = settingsStorageRepository.getServicePointCountry()
+            _providerCode.value = settingsStorageRepository.getServicePointProvider()
             _availableProviders.addSource(_countryCode) {
-                countryCode -> _availableProviders.value = yamlValuesRepository.getAvailableServiceProviders(countryCode)
+                countryCode -> _availableProviders.value = YamlValuesConverter.getProvidersLocalized(
+                yamlValuesRepository.getAvailableServiceProviders(countryCode))
             }
         }
     }
@@ -38,7 +31,7 @@ class ProviderSelectViewModel : ViewModel() {
     val providerCode: LiveData<String>
         get() = _providerCode
 
-    val availableProviders: LiveData<List<ProviderYmlEntity>>
+    val availableProviders: LiveData<List<ProviderYmlDto>>
         get() = _availableProviders
 
     fun updateProvider(newProviderCode: String) {
