@@ -10,6 +10,8 @@ import space.kovo.nocnyprud2.R
 
 class WizardFragmentBase @SuppressLint("ValidFragment") constructor(private val fragmentLayout: Int = R.layout.wizard_base_fragment) : Fragment() {
 
+    private var container: ViewGroup? = null
+
     @Deprecated("Deprecated in Java")
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -17,5 +19,8 @@ class WizardFragmentBase @SuppressLint("ValidFragment") constructor(private val 
         savedInstanceState: Bundle?
     ): View? {
         return inflater.inflate(fragmentLayout, container, false)
+        this.container = container
     }
+
+    fun getContainer(): ViewGroup? = container
 }

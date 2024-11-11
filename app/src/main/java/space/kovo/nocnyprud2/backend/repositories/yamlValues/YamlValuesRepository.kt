@@ -9,4 +9,6 @@ interface YamlValuesRepository {
 
     fun getAvailableServiceProviders(countryCode: String): List<ProviderYmlEntity>
 
+    fun getServicePointSetupLayout(countryCode: String, providerCode: String): String
+
 }

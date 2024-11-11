@@ -22,4 +22,17 @@ class YamlValuesRepositoryImpl : YamlValuesRepository {
                 "countryCode: $countryCode, providers: $result")
         return result
     }
+
+    override fun getServicePointSetupLayout(countryCode: String, providerCode: String): String {
+        val result: String = Values.wizard.supportedCountries
+            .filter { it.id.equals(countryCode) }
+            .first()
+            .providers
+            .filter { it.id.equals(providerCode) }
+            .first()
+            .servicePointSetupLayout
+        Logger.d("Getting fragment form template for provider with " +
+                "code: $providerCode with countryCode: $countryCode, result: $result")
+        return result
+    }
 }

@@ -31,4 +31,9 @@ class ServicePointRepositoryImpl: ServicePointRepository {
         Logger.d("Setting energy provider for default service point entity, result: $providerCode")
         servicePointDao.updateDefaultProvider(providerCode)
     }
+
+    override suspend fun setServicePointProviderData(providerData: String) {
+        Logger.d("Saving provider form data for default service point entity, result: $providerData")
+        servicePointDao.updateDefaultProviderFormData(providerData)
+    }
 }

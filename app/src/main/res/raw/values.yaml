@@ -16,6 +16,7 @@ supportedCountries:
             value: "ČEZ"
           - lang: "cz"
             value: "ČEZ"
+        servicePointSetupLayout: "wizard_service_point_setup_fragment_cz_cez"
   - id: "sk"
     name:
       - lang: "en"
@@ -33,4 +34,5 @@ supportedCountries:
             value: "SSE"
           - lang: "cz"
             value: "SSE"
+        servicePointSetupLayout: "wizard_service_point_setup_fragment_sk_sse"
 other: "something"

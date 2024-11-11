@@ -9,4 +9,6 @@ interface ServicePointRepository {
     suspend fun setCountryForDefaultServicePoint(countryCode: String)
 
     suspend fun setProviderForDefaultServicePoint(providerCode: String)
+
+    suspend fun setServicePointProviderData(providerData: String)
 }

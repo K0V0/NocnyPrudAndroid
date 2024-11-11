@@ -19,7 +19,7 @@
     </LinearLayout>
     <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="0dp" android:layout_weight="10" android:id="@+id/contentContainer"
+            android:layout_height="0dp" android:layout_weight="10" android:id="@+id/wizardContentContainer"
             android:layout_gravity="center" android:paddingTop="@dimen/global_padding_half"
             android:paddingBottom="@dimen/global_padding_half">
 

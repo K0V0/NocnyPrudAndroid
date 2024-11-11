@@ -23,6 +23,9 @@ interface ServicePointDao {
     @Query("UPDATE service_point SET providercode = :providerCode WHERE name LIKE '$DEFAULT_NAME'")
     suspend fun updateDefaultProvider(providerCode: String)
 
+    @Query("UPDATE service_point SET providerformscontent = :providerFormData WHERE name LIKE '$DEFAULT_NAME'")
+    suspend fun updateDefaultProviderFormData(providerFormData: String)
+
     @Query("SELECT * FROM service_point WHERE name LIKE :name LIMIT 1")
     suspend fun findByName(name: String): ServicePointEntity?
 

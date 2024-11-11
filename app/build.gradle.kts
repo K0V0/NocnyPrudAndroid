@@ -80,6 +80,9 @@ dependencies {
     implementation(libs.jackson.module.kotlin)
     implementation(libs.jackson.dataformat.yaml)
 
+    // Google GSON
+    implementation(libs.gson)
+
     // SQLite database
     implementation(libs.androidx.room.runtime)
     kapt(libs.androidx.room.compiler.v260)
@@ -96,4 +99,7 @@ dependencies {
 
     // Logging
     implementation(libs.logger)
+
+    // Event Bus
+    implementation(libs.eventbus)
 }

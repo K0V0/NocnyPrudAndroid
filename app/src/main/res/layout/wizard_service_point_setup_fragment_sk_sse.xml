@@ -8,8 +8,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="text"
+            android:text="@string/service_point_detail_cz_cez_ean_textfield"
             android:ems="10"
-            android:id="@+id/service_point_setup_cz_cez_ean_code"
-            android:textSize="@dimen/wizard_form_fields_font_size"
-            android:hint="@string/service_point_detail_cz_cez_ean_textfield"/>
+            android:id="@+id/service_point_setup_cz_cez_ean_code"/>
 </LinearLayout>

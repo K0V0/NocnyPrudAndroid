@@ -2,5 +2,6 @@
     <dimen name="global_padding">16dp</dimen>
     <dimen name="global_margin">16dp</dimen>
     <dimen name="title_font_size">32sp</dimen>
+    <dimen name="wizard_form_fields_font_size">32sp</dimen>
     <dimen name="global_padding_half">8dp</dimen>
 </resources>

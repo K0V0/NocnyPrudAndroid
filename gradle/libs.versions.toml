@@ -1,6 +1,8 @@
 [versions]
 agp = "8.6.0-alpha07"
 datastorePreferences = "1.1.1"
+eventbus = "3.3.1"
+gson = "2.10.1"
 jacksonDatabind = "2.15.0"
 jacksonDataformatYaml = "2.15.0"
 jacksonModuleKotlin = "2.15.0"
@@ -44,6 +46,8 @@ androidx-room-compiler-v260 = { module = "androidx.room:room-compiler", version.
 androidx-room-guava = { module = "androidx.room:room-guava", version.ref = "roomGuava" }
 androidx-room-ktx = { module = "androidx.room:room-ktx" }
 androidx-room-runtime = { module = "androidx.room:room-runtime", version.ref = "roomRuntime" }
+eventbus = { module = "org.greenrobot:eventbus", version.ref = "eventbus" }
+gson = { module = "com.google.code.gson:gson", version.ref = "gson" }
 jackson-databind = { module = "com.fasterxml.jackson.core:jackson-databind", version.ref = "jacksonDatabind" }
 jackson-dataformat-yaml = { module = "com.fasterxml.jackson.dataformat:jackson-dataformat-yaml", version.ref = "jacksonDataformatYaml" }
 jackson-module-kotlin = { module = "com.fasterxml.jackson.module:jackson-module-kotlin", version.ref = "jacksonModuleKotlin" }

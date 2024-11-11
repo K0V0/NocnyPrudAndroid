@@ -12,9 +12,15 @@ inline fun <reified T: Activity> Activity.handleMoveToNextActivityButton() {
         .setOnClickListener { startActivity(Intent(this, T::class.java)) }
 }
 
-fun <T: Activity> Activity.handleMoveToNextActivityButton(nextActivityClass: Class<T>) {
+fun <T: Activity> Activity.handleMoveToNextActivityButton(
+    nextActivityClass: Class<T>,
+    listenerRunnable: () -> Unit
+) {
     this.findViewById<Button>(R.id.wizardBaseButtonNext)
-        .setOnClickListener { startActivity(Intent(this, nextActivityClass)) }
+        .setOnClickListener {
+            listenerRunnable()
+            startActivity(Intent(this, nextActivityClass))
+        }
 }
 
 inline fun <reified T: Activity> Activity.moveToActivity() {
