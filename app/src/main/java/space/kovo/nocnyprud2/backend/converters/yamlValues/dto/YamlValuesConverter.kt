@@ -1,4 +1,4 @@
-package space.kovo.nocnyprud2.backend.converters.yamlValues
+package space.kovo.nocnyprud2.backend.converters.yamlValues.dto
 
 import space.kovo.nocnyprud2.backend.dtos.yamlValues.ProviderYmlDto
 import space.kovo.nocnyprud2.backend.dtos.yamlValues.SupportedCountryYmlDto

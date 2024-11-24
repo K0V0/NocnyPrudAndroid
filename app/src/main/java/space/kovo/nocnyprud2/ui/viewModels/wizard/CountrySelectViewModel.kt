@@ -4,7 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.launch
-import space.kovo.nocnyprud2.backend.converters.yamlValues.YamlValuesConverter
+import space.kovo.nocnyprud2.backend.converters.yamlValues.dto.YamlValuesConverter
 import space.kovo.nocnyprud2.backend.dtos.yamlValues.SupportedCountryYmlDto
 
 class CountrySelectViewModel : WizardViewModelBase() {
