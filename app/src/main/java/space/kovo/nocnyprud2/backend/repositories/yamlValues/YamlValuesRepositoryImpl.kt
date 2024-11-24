@@ -8,22 +8,41 @@ import space.kovo.nocnyprud2.backend.singletons.Values
 class YamlValuesRepositoryImpl : YamlValuesRepository {
 
     override fun getSupportedCountries(): List<SupportedCountryYmlEntity> {
+
         val result: List<SupportedCountryYmlEntity> = Values.wizard.supportedCountries
-        Logger.d("Getting supported countries from YAML repository, values: $result")
+
+        Logger.d("Found supported countries from YAML repository, values: $result")
+
         return result
     }
 
     override fun getAvailableServiceProviders(countryCode: String): List<ProviderYmlEntity> {
+
+        Logger.d("Getting supported providers from YAML repository for countryCode: $countryCode")
+
+        if (countryCode.isEmpty()) {
+            Logger.e("countryCode is empty")
+        }
+
         val result: List<ProviderYmlEntity> = Values.wizard.supportedCountries
             .filter { it.id.equals(countryCode) }
             .first()
             .providers
-        Logger.d("Getting supported providers from YAML repository, " +
-                "countryCode: $countryCode, providers: $result")
+
+        Logger.d("Found providers: $result, for countryCode: $countryCode")
+
         return result
     }
 
     override fun getServicePointSetupLayout(countryCode: String, providerCode: String): String {
+
+        Logger.d("Getting fragment form template for provider with " +
+                "code: $providerCode with countryCode: $countryCode")
+
+        if (countryCode.isEmpty() || providerCode.isEmpty()) {
+            Logger.e("countryCode or providerCode is empty, cannot locate fragment template")
+        }
+
         val result: String = Values.wizard.supportedCountries
             .filter { it.id.equals(countryCode) }
             .first()
@@ -31,8 +50,9 @@ class YamlValuesRepositoryImpl : YamlValuesRepository {
             .filter { it.id.equals(providerCode) }
             .first()
             .servicePointSetupLayout
-        Logger.d("Getting fragment form template for provider with " +
-                "code: $providerCode with countryCode: $countryCode, result: $result")
+
+        Logger.d("Found fragment template to be used: $result")
+
         return result
     }
 }

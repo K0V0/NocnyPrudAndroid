@@ -13,9 +13,9 @@ class SettingsStorageRepositoryImpl : SettingsStorageRepository {
 
     companion object {
         private const val SERVICE_POINT: String = "service_point"
-        private val SERVICE_POINT_COUNTRY_CODE = SERVICE_POINT + "country_code"
-        private val SERVICE_POINT_PROVIDER_CODE = SERVICE_POINT + "provider_code"
-        private val SERVICE_POINT_PROVIDER_FORM_DATA = SERVICE_POINT_PROVIDER_CODE + "provider_form_data"
+        private val SERVICE_POINT_COUNTRY_CODE = SERVICE_POINT + "_country_code"
+        private val SERVICE_POINT_PROVIDER_CODE = SERVICE_POINT + "_provider_code"
+        private val SERVICE_POINT_PROVIDER_FORM_DATA = SERVICE_POINT + "_provider_form_data"
 
         private val keysMap: Map<String, KClass<*>> = mapOf(
             Pair(SERVICE_POINT_COUNTRY_CODE, String::class),
@@ -49,7 +49,7 @@ class SettingsStorageRepositoryImpl : SettingsStorageRepository {
     }
 
     override suspend fun getServicePointCountry(): String {
-        return getString(SERVICE_POINT_COUNTRY_CODE)!!
+        return getString(SERVICE_POINT_COUNTRY_CODE) ?: ""
     }
 
     override suspend fun setServicePointProvider(providerCode: String) {
@@ -57,15 +57,15 @@ class SettingsStorageRepositoryImpl : SettingsStorageRepository {
     }
 
     override suspend fun getServicePointProvider(): String {
-        return getString(SERVICE_POINT_PROVIDER_CODE)!!
+        return getString(SERVICE_POINT_PROVIDER_CODE) ?: ""
     }
 
-    override suspend fun setServicePointProviderFormData(providerFormData: String) {
-        return putString(SERVICE_POINT_PROVIDER_FORM_DATA, providerFormData)
+    override suspend fun setServicePointProviderFormData(providerCode: String) {
+        return putString(SERVICE_POINT_PROVIDER_FORM_DATA, providerCode)
     }
 
     override suspend fun getServicePointProviderFormData(): String {
-        return getString(SERVICE_POINT_PROVIDER_FORM_DATA)!!
+        return getString(SERVICE_POINT_PROVIDER_FORM_DATA) ?: "{}"
     }
 
     override suspend fun getAll(): List<*> {

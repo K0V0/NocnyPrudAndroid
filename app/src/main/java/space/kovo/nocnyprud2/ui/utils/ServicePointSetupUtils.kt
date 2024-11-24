@@ -32,6 +32,10 @@ class ServicePointSetupFormsPopulator {
             val gson = Gson()
             val deserializedMap: Map<String, String> = gson.fromJson(jsonString, FORMS_DATA_TYPE)
 
+            if (deserializedMap.isEmpty()) {
+                return
+            }
+
             for (i in 0 until formViewGroup.childCount) {
                 val child = formViewGroup.getChildAt(i)
                 val key = child.resources.getResourceEntryName(child.id)
