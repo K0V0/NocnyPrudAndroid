@@ -4,7 +4,9 @@ import android.os.Bundle
 import android.view.ViewGroup
 import androidx.activity.viewModels
 import com.orhanobut.logger.Logger
+import org.greenrobot.eventbus.EventBus
 import space.kovo.nocnyprud2.R
+import space.kovo.nocnyprud2.backend.events.ServicePointEvent
 import space.kovo.nocnyprud2.ui.activities.timetable.TimetableActivity
 import space.kovo.nocnyprud2.ui.utils.ServicePointSetupFormsPopulator
 import space.kovo.nocnyprud2.ui.viewModels.wizard.ServicePointSetupViewModel
@@ -47,6 +49,9 @@ class ServicePointSetupActivity : WizardActivityBase<TimetableActivity>(
     private fun populateAndSaveFormData() {
         val data: String = ServicePointSetupFormsPopulator.extractDataFromForm(super.fragment?.view as ViewGroup)
         Logger.i("Obtained end jsoned data for service point setup {}", data)
-        viewModel.updateServicePointData(data)
+        viewModel.updateServicePointData(data) {
+            // send event after data have been serialized and saved
+            EventBus.getDefault().post(ServicePointEvent(ServicePointEvent.EventType.WIZARD_FLOW_FINISHED))
+        }
     }
 }

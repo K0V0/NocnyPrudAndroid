@@ -12,7 +12,7 @@ import space.kovo.nocnyprud2.backend.entities.database.TimetableEntity
         ServicePointEntity::class,
         TimetableEntity::class,
     ],
-    version = 1)
+    version = 2)
 abstract class AppDatabase: RoomDatabase() {
     abstract fun servicePointDao(): ServicePointDao
     abstract fun timetableDao(): TimetableDao

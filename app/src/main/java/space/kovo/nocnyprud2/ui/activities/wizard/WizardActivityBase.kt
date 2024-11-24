@@ -4,6 +4,7 @@ import android.app.FragmentTransaction
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import space.kovo.nocnyprud2.R
+import space.kovo.nocnyprud2.ui.activities.BaseActivity
 import space.kovo.nocnyprud2.ui.utils.handleMoveToNextActivityButton
 import space.kovo.nocnyprud2.ui.utils.setText
 
@@ -13,7 +14,7 @@ abstract class WizardActivityBase<NEXT_ACTIVITY : AppCompatActivity>(
     val buttonLabelResourceId: Int,
     var fragmentLayoutId: Int,
     val nextActivity: Class<NEXT_ACTIVITY>
-) : AppCompatActivity() {
+) : BaseActivity() {
 
     protected var fragment: WizardFragmentBase? = null
 

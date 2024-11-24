@@ -23,7 +23,7 @@ import androidx.room.PrimaryKey
     foreignKeys = [ForeignKey(
         entity = ServicePointEntity::class,
         parentColumns = arrayOf("uid"),
-        childColumns = arrayOf("service_point_id"),
+        childColumns = arrayOf("servicePointId"),
         onDelete = ForeignKey.CASCADE
     )],
 //    indices = [
