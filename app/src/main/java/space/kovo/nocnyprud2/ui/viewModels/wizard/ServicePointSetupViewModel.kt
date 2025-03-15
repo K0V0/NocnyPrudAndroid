@@ -44,7 +44,7 @@ class ServicePointSetupViewModel : WizardViewModelBase() {
     fun updateServicePointData(newData: String, callback: () -> Unit) {
         _formDataJson.value = newData
         viewModelScope.launch {
-            servicePointRepository.setServicePointProviderData(newData)
+            servicePointRepository.setProviderDataForDefaultServicePoint(newData)
             settingsStorageRepository.setServicePointProviderFormData(newData)
             callback()
         }

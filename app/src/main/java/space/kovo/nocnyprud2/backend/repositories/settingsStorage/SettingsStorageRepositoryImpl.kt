@@ -6,6 +6,8 @@ import androidx.datastore.preferences.core.intPreferencesKey
 import androidx.datastore.preferences.core.stringPreferencesKey
 import com.orhanobut.logger.Logger
 import kotlinx.coroutines.flow.first
+import space.kovo.nocnyprud2.backend.services.httpService.HttpService
+import space.kovo.nocnyprud2.backend.services.httpService.HttpServiceImpl
 import space.kovo.nocnyprud2.backend.singletons.SettingsStorage
 import kotlin.reflect.KClass
 
@@ -13,15 +15,24 @@ class SettingsStorageRepositoryImpl : SettingsStorageRepository {
 
     companion object {
         private const val SERVICE_POINT: String = "service_point"
-        private val SERVICE_POINT_COUNTRY_CODE = SERVICE_POINT + "_country_code"
-        private val SERVICE_POINT_PROVIDER_CODE = SERVICE_POINT + "_provider_code"
-        private val SERVICE_POINT_PROVIDER_FORM_DATA = SERVICE_POINT + "_provider_form_data"
+        private const val SERVICE_POINT_COUNTRY_CODE = SERVICE_POINT + "_country_code"
+        private const val SERVICE_POINT_PROVIDER_CODE = SERVICE_POINT + "_provider_code"
+        private const val SERVICE_POINT_PROVIDER_FORM_DATA = SERVICE_POINT + "_provider_form_data"
 
         private val keysMap: Map<String, KClass<*>> = mapOf(
             Pair(SERVICE_POINT_COUNTRY_CODE, String::class),
             SERVICE_POINT_PROVIDER_CODE to String::class,
             SERVICE_POINT_PROVIDER_FORM_DATA to String::class
         )
+
+        @Volatile
+        private var instance: SettingsStorageRepository? = null
+
+        fun getInstance(): SettingsStorageRepository {
+            return instance ?: synchronized(this) {
+                instance ?: SettingsStorageRepositoryImpl().also { instance = it }
+            }
+        }
     }
 
 

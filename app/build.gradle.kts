@@ -102,4 +102,10 @@ dependencies {
 
     // Event Bus
     implementation(libs.eventbus)
+
+    // reflections
+    implementation(libs.reflections)
+    
+    // HTTP REST Client
+    implementation("com.squareup.okhttp3:okhttp:4.11.0")
 }

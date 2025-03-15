@@ -6,9 +6,12 @@ interface ServicePointRepository {
 
     suspend fun getOrCreateDefaultServicePoint(): ServicePointEntity
 
+    suspend fun getProviderDataForDefaultServicePoint(): String
+
     suspend fun setCountryForDefaultServicePoint(countryCode: String)
 
     suspend fun setProviderForDefaultServicePoint(providerCode: String)
 
-    suspend fun setServicePointProviderData(providerData: String)
+    suspend fun setProviderDataForDefaultServicePoint(providerData: String)
+
 }

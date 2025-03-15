@@ -7,6 +7,18 @@ import space.kovo.nocnyprud2.backend.singletons.Database
 
 class ServicePointRepositoryImpl: ServicePointRepository {
 
+    companion object {
+
+        @Volatile
+        private var instance: ServicePointRepository? = null
+
+        fun getInstance(): ServicePointRepository {
+            return instance ?: synchronized(this) {
+                instance ?: ServicePointRepositoryImpl().also { instance = it }
+            }
+        }
+    }
+
     // ok, it just lazy loading reference to singleton ROOM database instance
     val servicePointDao: ServicePointDao by lazy { Database.instance!!.servicePointDao() }
 
@@ -27,6 +39,10 @@ class ServicePointRepositoryImpl: ServicePointRepository {
         return entity!!
     }
 
+    override suspend fun getProviderDataForDefaultServicePoint(): String {
+        return getOrCreateDefaultServicePoint().providerFormsContent!!
+    }
+
     override suspend fun setCountryForDefaultServicePoint(countryCode: String) {
 
         Logger.d("Setting country for default service point entity, result: $countryCode")
@@ -41,7 +57,7 @@ class ServicePointRepositoryImpl: ServicePointRepository {
         servicePointDao.updateDefaultProvider(providerCode)
     }
 
-    override suspend fun setServicePointProviderData(providerData: String) {
+    override suspend fun setProviderDataForDefaultServicePoint(providerData: String) {
 
         Logger.d("Saving provider form data for default service point entity, result: $providerData")
 
