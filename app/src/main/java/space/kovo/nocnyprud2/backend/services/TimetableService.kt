@@ -1,8 +1,10 @@
 package space.kovo.nocnyprud2.backend.services
 
-import space.kovo.nocnyprud2.backend.entities.database.ServicePointEntity
+import space.kovo.nocnyprud2.backend.entities.database.TimetableEntity
 
 interface TimetableService {
 
-    fun acquireDataFromProvider(): List<ServicePointEntity>
+    fun acquireDataFromProvider(): List<TimetableEntity>
+
+    fun saveAndReplaceTimetable(data: List<TimetableEntity>)
 }

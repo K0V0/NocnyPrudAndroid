@@ -4,6 +4,7 @@ import com.orhanobut.logger.Logger
 import kotlinx.coroutines.runBlocking
 import space.kovo.nocnyprud2.backend.repositories.settingsStorage.SettingsStorageRepositoryImpl
 import space.kovo.nocnyprud2.backend.services.httpService.HttpRequestObject
+import space.kovo.nocnyprud2.backend.services.httpService.HttpResponseHandler
 
 class ReflectionUtils {
 
@@ -11,6 +12,7 @@ class ReflectionUtils {
 
         private const val HTTP_REQUEST_OBJECTS_PACKAGE_PATH = "space.kovo.nocnyprud2.backend.services.httpService.requestObjectTemplates"
         private const val HTTP_REQUEST_OBJECT_CLASS_NAME = "HttpRequestObjectImpl"
+        private const val HTTP_RESPONSE_HANDLER_CLASS_NAME = "HttpResponseHandler"
 
         inline fun <reified T> loadClassByName(className: String): T? {
             return try {
@@ -45,6 +47,15 @@ class ReflectionUtils {
                 HTTP_REQUEST_OBJECTS_PACKAGE_PATH + "." + getCurrentProviderSpecificPath() + "." + HTTP_REQUEST_OBJECT_CLASS_NAME)
             if (result == null) {
                 throw Exception("Failed to load $HTTP_REQUEST_OBJECT_CLASS_NAME")
+            }
+            return result
+        }
+
+        fun getHttpResponseHandler(): HttpResponseHandler {
+            val result = loadClassByName<HttpResponseHandler>(
+                HTTP_REQUEST_OBJECTS_PACKAGE_PATH + "." + getCurrentProviderSpecificPath() + "." + HTTP_RESPONSE_HANDLER_CLASS_NAME)
+            if (result == null) {
+                throw Exception("Failed to load $HTTP_RESPONSE_HANDLER_CLASS_NAME")
             }
             return result
         }

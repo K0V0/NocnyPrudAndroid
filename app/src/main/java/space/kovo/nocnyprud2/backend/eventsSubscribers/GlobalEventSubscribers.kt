@@ -14,7 +14,8 @@ object GlobalEventSubscribers {
 
         if (event.message == ServicePointEvent.EventType.WIZARD_FLOW_FINISHED) {
             Logger.i("Finished wizard flow.")
-            TimetableServiceImpl.getInstance().acquireDataFromProvider()
+            val results = TimetableServiceImpl.getInstance().acquireDataFromProvider()
+            TimetableServiceImpl.getInstance().saveAndReplaceTimetable(results)
         }
     }
 }

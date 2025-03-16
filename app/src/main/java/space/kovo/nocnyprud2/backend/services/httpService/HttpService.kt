@@ -1,6 +1,7 @@
 package space.kovo.nocnyprud2.backend.services.httpService
 
 import com.google.gson.JsonObject
+import space.kovo.nocnyprud2.backend.entities.database.TimetableEntity
 
 interface HttpRequestObject {
     var url: String
@@ -11,6 +12,10 @@ interface HttpRequestObject {
     fun toInfo(): String {
         return "Request -> URL: $url, UrlParameters: $urlParameters, Method: $method, Body: $body"
     }
+}
+
+interface HttpResponseHandler {
+    fun onSuccess(data: String): List<TimetableEntity>
 }
 
 interface HttpService {

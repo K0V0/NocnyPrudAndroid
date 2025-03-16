@@ -13,4 +13,8 @@ interface TimetableDao {
 
     @Query("SELECT * FROM timetable WHERE servicepointid LIKE :uid ORDER BY sequencestart")
     suspend fun getServicePointTimetables(uid: Int): List<TimetableEntity>
+
+    @Query("DELETE FROM timetable WHERE servicepointid LIKE :uid")
+    suspend fun deleteAllTimetablesForServicePoint(uid: Int)
+
 }

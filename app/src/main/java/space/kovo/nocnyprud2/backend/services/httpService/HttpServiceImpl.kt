@@ -1,5 +1,6 @@
 package space.kovo.nocnyprud2.backend.services.httpService
 
+import com.google.gson.Gson
 import com.orhanobut.logger.Logger
 import okhttp3.MediaType
 import okhttp3.MediaType.Companion.toMediaType
@@ -15,6 +16,7 @@ class HttpServiceImpl : HttpService {
     companion object {
 
         val MEDIA_TYPE_JSON: MediaType? = "application/json".toMediaType()
+        val ACCEPTABLE_RESPONSE_HTTP_CODES: Array<Int> = arrayOf(200)
 
         val CLIENT: OkHttpClient = OkHttpClient()
 
@@ -38,12 +40,13 @@ class HttpServiceImpl : HttpService {
 
         }
         if (httpRequestObject.method == HttpMethods.POST.name) {
-            requestBuilder.post(httpRequestObject.body.toString().toRequestBody(MEDIA_TYPE_JSON))
+            requestBuilder.post(Gson().toJson(httpRequestObject.body).toRequestBody(MEDIA_TYPE_JSON))
         }
 
         CLIENT.newCall(requestBuilder.build()).execute().use { response ->
-            Logger.d(response.toString())
-            return response.body.toString()
+            if (ACCEPTABLE_RESPONSE_HTTP_CODES.contains(response.code)) {
+                return response.body?.string() ?: ""
+            }
         }
 
         return ""
