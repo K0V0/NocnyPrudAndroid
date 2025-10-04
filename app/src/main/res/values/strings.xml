@@ -24,7 +24,12 @@
     <string name="service_point_setup_button_next">Finish setup</string>
     <string name="service_point_setup_loading">Loading...</string>
 
+    <!-- timetable screen -->
+    <string name="timetable_title">Timetable</string>
+    <string name="timetable_description">Overview of low tarif timespans</string>
+
     <!-- CZ/CEZ-->
     <string name="service_point_detail_cz_cez_ean_textfield">EAN Code</string>
+
 
 </resources>

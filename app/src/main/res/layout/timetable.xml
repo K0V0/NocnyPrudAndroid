@@ -2,6 +2,14 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               android:orientation="vertical"
               android:layout_width="match_parent"
-              android:layout_height="match_parent">
+              android:layout_height="match_parent" android:padding="@dimen/global_padding">
 
+    <TextView
+            android:text="@string/timetable_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:id="@+id/timetable_title_text" android:textSize="34sp"/>
+    <TextView
+            android:text="@string/timetable_description"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:id="@+id/timetable_description"/>
 </LinearLayout>
