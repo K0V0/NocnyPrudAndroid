@@ -7,7 +7,7 @@ import space.kovo.nocnyprud2.backend.utils.fromJson
 import java.text.SimpleDateFormat
 import java.util.*
 
-class HttpResponseHandler : HttpResponseHandler {
+class HttpResponseHandlerImpl : HttpResponseHandler {
 
     companion object {
         val dateFormat = SimpleDateFormat("dd.MM.yyyy HH:mm", Locale.getDefault())

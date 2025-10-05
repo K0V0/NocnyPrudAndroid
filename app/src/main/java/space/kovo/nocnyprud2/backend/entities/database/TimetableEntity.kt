@@ -26,9 +26,6 @@ import androidx.room.PrimaryKey
         childColumns = arrayOf("servicePointId"),
         onDelete = ForeignKey.CASCADE
     )],
-//    indices = [
-//        androidx.room.Index(value = ["sequence_date"])
-//    ]
 )
 data class TimetableEntity(
 
@@ -38,12 +35,11 @@ data class TimetableEntity(
     @ColumnInfo
     val servicePointId: Int,
 
-//    @ColumnInfo
-//    val sequenceDate: String,
-
+    // seconds
     @ColumnInfo
     val sequenceStart: Long,
 
+    // seconds
     @ColumnInfo
     val sequenceEnd: Long,
 )

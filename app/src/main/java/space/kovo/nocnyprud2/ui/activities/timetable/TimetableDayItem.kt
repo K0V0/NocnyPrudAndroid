@@ -9,7 +9,7 @@ import android.view.View
 
 class TimetableDayItem(context: Context, attrs: AttributeSet?) : View(context, attrs) {
 
-    var bookings: List<Pair<Float, Float>> = emptyList()
+    var timespans: List<Pair<Float, Float>> = emptyList()
         set(value) {
             field = value
             invalidate() // redraw when data changes
@@ -26,7 +26,7 @@ class TimetableDayItem(context: Context, attrs: AttributeSet?) : View(context, a
         val hourWidth = width / 24f
         val barHeight = height.toFloat()
 
-        for ((start, end) in bookings) {
+        for ((start, end) in timespans) {
             val left = start * hourWidth
             val right = end * hourWidth
             canvas.drawRect(left, 0f, right, barHeight, paint)

@@ -12,7 +12,7 @@ class ReflectionUtils {
 
         private const val HTTP_REQUEST_OBJECTS_PACKAGE_PATH = "space.kovo.nocnyprud2.backend.services.httpService.requestObjectTemplates"
         private const val HTTP_REQUEST_OBJECT_CLASS_NAME = "HttpRequestObjectImpl"
-        private const val HTTP_RESPONSE_HANDLER_CLASS_NAME = "HttpResponseHandler"
+        private const val HTTP_RESPONSE_HANDLER_CLASS_NAME = "HttpResponseHandlerImpl"
 
         inline fun <reified T> loadClassByName(className: String): T? {
             return try {
