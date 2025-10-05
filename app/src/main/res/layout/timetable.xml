@@ -12,4 +12,195 @@
             android:text="@string/timetable_description"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" android:id="@+id/timetable_description"/>
+    <space.kovo.nocnyprud2.ui.activities.timetable.TimetableGraphHolder
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" android:id="@+id/timetable_graph_holder"
+            android:layout_marginTop="4dp">
+        <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/timetable_graph_hours_even">
+            <TextView
+                    android:text="0"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textAlignment="textStart"
+                    android:textSize="20sp" android:textStyle="bold"
+                    android:id="@+id/timetable_graph_hours_0"/>
+            <TextView
+                    android:text="2"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content" android:id="@+id/timetable_graph_hours_2"
+                    android:layout_weight="1"
+                    android:textAlignment="textStart"
+                    android:textSize="20sp" android:textStyle="bold"/>
+            <TextView
+                    android:text="4"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content" android:id="@+id/timetable_graph_hours_4"
+                    android:layout_weight="1"
+                    android:textAlignment="textStart"
+                    android:textSize="20sp" android:textStyle="bold"/>
+            <TextView
+                    android:text="6"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content" android:id="@+id/timetable_graph_hours_6"
+                    android:layout_weight="1"
+                    android:textAlignment="textStart"
+                    android:textSize="20sp" android:textStyle="bold"/>
+            <TextView
+                    android:text="8"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content" android:id="@+id/timetable_graph_hours_8"
+                    android:layout_weight="1"
+                    android:textAlignment="textStart"
+                    android:textSize="20sp" android:textStyle="bold"/>
+            <TextView
+                    android:text="10"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content" android:id="@+id/timetable_graph_hours_10"
+                    android:layout_weight="1"
+                    android:textAlignment="textStart"
+                    android:textSize="20sp" android:textStyle="bold"/>
+            <TextView
+                    android:text="12"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content" android:id="@+id/timetable_graph_hours_12"
+                    android:layout_weight="1"
+                    android:textAlignment="textStart"
+                    android:textSize="20sp" android:textStyle="bold"/>
+            <TextView
+                    android:text="14"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content" android:id="@+id/timetable_graph_hours_14"
+                    android:layout_weight="1"
+                    android:textAlignment="textStart"
+                    android:textSize="20sp" android:textStyle="bold"/>
+            <TextView
+                    android:text="16"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content" android:id="@+id/timetable_graph_hours_16"
+                    android:layout_weight="1"
+                    android:textAlignment="textStart"
+                    android:textSize="20sp" android:textStyle="bold"/>
+            <TextView
+                    android:text="18"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content" android:id="@+id/timetable_graph_hours_18"
+                    android:layout_weight="1"
+                    android:textAlignment="textStart"
+                    android:textSize="20sp" android:textStyle="bold"/>
+            <TextView
+                    android:text="20"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content" android:id="@+id/timetable_graph_hours_20"
+                    android:layout_weight="1"
+                    android:textAlignment="textStart"
+                    android:textSize="20sp" android:textStyle="bold"/>
+            <TextView
+                    android:text="22"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content" android:id="@+id/timetable_graph_hours_22"
+                    android:layout_weight="1"
+                    android:textAlignment="textStart"
+                    android:textSize="20sp" android:textStyle="bold"/>
+        </LinearLayout>
+        <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" android:id="@+id/timetable_graph_hours_odd"
+        >
+            <TextView
+                    android:text="1"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content" android:id="@+id/timetable_graph_hours_1"
+                    android:layout_weight="1"
+                    android:textAlignment="textEnd"
+                    android:textSize="20sp" android:textStyle="bold"/>
+            <TextView
+                    android:text="3"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content" android:id="@+id/timetable_graph_hours_3"
+                    android:layout_weight="1"
+                    android:textAlignment="textEnd"
+                    android:textSize="20sp" android:textStyle="bold"/>
+            <TextView
+                    android:text="5"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content" android:id="@+id/timetable_graph_hours_5"
+                    android:layout_weight="1"
+                    android:textAlignment="textEnd"
+                    android:textSize="20sp" android:textStyle="bold"/>
+            <TextView
+                    android:text="7"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content" android:id="@+id/timetable_graph_hours_7"
+                    android:layout_weight="1"
+                    android:textAlignment="textEnd"
+                    android:textSize="20sp" android:textStyle="bold"/>
+            <TextView
+                    android:text="9"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content" android:id="@+id/timetable_graph_hours_9"
+                    android:layout_weight="1"
+                    android:textAlignment="textEnd"
+                    android:textSize="20sp" android:textStyle="bold"/>
+            <TextView
+                    android:text="11"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content" android:id="@+id/timetable_graph_hours_11"
+                    android:layout_weight="1"
+                    android:textAlignment="textEnd"
+                    android:textSize="20sp" android:textStyle="bold"/>
+            <TextView
+                    android:text="13"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content" android:id="@+id/timetable_graph_hours_13"
+                    android:layout_weight="1"
+                    android:textAlignment="textEnd"
+                    android:textSize="20sp" android:textStyle="bold"/>
+            <TextView
+                    android:text="15"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content" android:id="@+id/timetable_graph_hours_15"
+                    android:layout_weight="1"
+                    android:textAlignment="textEnd"
+                    android:textSize="20sp" android:textStyle="bold"/>
+            <TextView
+                    android:text="17"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content" android:id="@+id/timetable_graph_hours_17"
+                    android:layout_weight="1"
+                    android:textAlignment="textEnd"
+                    android:textSize="20sp" android:textStyle="bold"/>
+            <TextView
+                    android:text="19"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content" android:id="@+id/timetable_graph_hours_19"
+                    android:layout_weight="1"
+                    android:textAlignment="textEnd"
+                    android:textSize="20sp" android:textStyle="bold"/>
+            <TextView
+                    android:text="21"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content" android:id="@+id/timetable_graph_hours_21"
+                    android:layout_weight="1"
+                    android:textAlignment="textEnd"
+                    android:textSize="20sp" android:textStyle="bold"/>
+            <TextView
+                    android:text="23"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content" android:id="@+id/timetable_graph_hours_23"
+                    android:layout_weight="1"
+                    android:textAlignment="textEnd"
+                    android:textSize="20sp" android:textStyle="bold"/>
+        </LinearLayout>
+        <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="#aaa"/>
+    </space.kovo.nocnyprud2.ui.activities.timetable.TimetableGraphHolder>
 </LinearLayout>
