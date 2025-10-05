@@ -28,4 +28,8 @@ class TimetableRepositoryImpl : TimetableRepository {
                 servicePointId, timetableEntity.sequenceStart, timetableEntity.sequenceEnd)
         }
     }
+
+    override suspend fun getTimetables(servicePointId: Int): List<TimetableEntity> {
+        return timetableDao.getServicePointTimetables(servicePointId)
+    }
 }

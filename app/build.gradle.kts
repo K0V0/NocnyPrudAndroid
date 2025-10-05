@@ -10,7 +10,7 @@ plugins {
 
 android {
     namespace = "space.kovo.nocnyprud2"
-    compileSdk = 34
+    compileSdk = 36
 
     defaultConfig {
         applicationId = "space.kovo.nocnyprud2"
@@ -62,6 +62,7 @@ dependencies {
     implementation(libs.androidx.ui.graphics)
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
+    implementation(libs.androidx.recyclerview)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
