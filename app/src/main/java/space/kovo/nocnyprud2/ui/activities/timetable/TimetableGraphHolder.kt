@@ -46,7 +46,13 @@ constructor(
         val stopY = height.toFloat()
         val x = ceil(width * getDayFraction())
         val timeBarWidth = (width / 24f / 8f).coerceAtLeast(2f)
-        canvas.drawRect(x, 0f, x + timeBarWidth, stopY, hourPointerColumn)
+        val timeBarCenteringOffset = timeBarWidth / 2f
+        canvas.drawRect(
+            x - timeBarCenteringOffset,
+            0f,
+            x + timeBarWidth - timeBarCenteringOffset,
+            stopY,
+            hourPointerColumn)
     }
 
     private fun getDayFraction(): Float {

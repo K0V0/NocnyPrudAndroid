@@ -55,14 +55,9 @@ class TimetableDayItemAdapter(
         holder: TimelineViewHolder,
         position: Int
     ) {
-        val dayName = timetableDayTitles[position]
-        val dayTimespans = timetableDays[dayName].orEmpty()
-
+        val dayName: String = timetableDayTitles[position]
         holder.dayName.text = dayName
-
-        holder.dayTimeline.timespans = dayTimespans
-            .map { it.startTimeDecimal to it.endTimeDecimal }
-            .toList()
+        holder.dayTimeline.timespans = timetableDays[dayName].orEmpty()
     }
 
     override fun getItemCount(): Int {
