@@ -24,6 +24,27 @@
     <string name="service_point_setup_button_next">Finish setup</string>
     <string name="service_point_setup_loading">Loading...</string>
 
+    <!-- permissions screen -->
+    <string name="permissions_title">Allow notifications</string>
+    <string name="permissions_text">So that We can warn You before the low tariff starts and ends even when the app is closed, please allow the following.</string>
+    <string name="permissions_button_next">Finish</string>
+    <string name="permissions_button_allow">Allow</string>
+    <string name="permissions_button_allowed">Allowed</string>
+    <string name="permissions_granted">allowed</string>
+    <string name="permissions_not_granted">not allowed yet</string>
+    <string name="permissions_notifications_title">Notifications</string>
+    <string name="permissions_notifications_text">Needed to show You the warning at all.</string>
+    <string name="permissions_alarms_title">Exact timing</string>
+    <string name="permissions_alarms_text">Needed to warn You at the right minute. Without it the warning may arrive late.</string>
+    <string name="permissions_battery_title">Background running</string>
+    <string name="permissions_battery_text">Your phone may stop the app in the background and no warnings would arrive. Pick this app in the list and allow it to run unrestricted.</string>
+
+    <!-- notifications -->
+    <string name="notification_channel_name">Low tariff</string>
+    <string name="notification_channel_description">Warnings before the low tariff starts and ends</string>
+    <string name="notification_low_tariff_starts">Low tariff starts at %1$s</string>
+    <string name="notification_low_tariff_ends">Low tariff ends at %1$s</string>
+
     <!-- timetable screen -->
     <string name="timetable_title">Timetable</string>
     <string name="timetable_description">Overview of low tarif timespans</string>

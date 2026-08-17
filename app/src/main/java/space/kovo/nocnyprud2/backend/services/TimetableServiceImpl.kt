@@ -1,6 +1,9 @@
 package space.kovo.nocnyprud2.backend.services
 
+import android.content.Context
+import com.orhanobut.logger.Logger
 import kotlinx.coroutines.runBlocking
+import space.kovo.nocnyprud2.backend.alarms.TariffAlarmScheduler
 import org.greenrobot.eventbus.EventBus
 import space.kovo.nocnyprud2.backend.entities.database.TimetableEntity
 import space.kovo.nocnyprud2.backend.events.ProviderApiEvent
@@ -23,6 +26,12 @@ class TimetableServiceImpl private constructor(
 ) : TimetableService {
 
     companion object {
+
+        /**
+         *  ČEZ publishes about a week ahead, so topping up with two days to spare leaves plenty
+         *  of room for a device that was offline or asleep for a while.
+         */
+        const val REFRESH_WHEN_LESS_THAN_SECONDS_LEFT = 2 * 24 * 3600L
 
         @Volatile
         private var instance: TimetableService? = null
@@ -54,5 +63,36 @@ class TimetableServiceImpl private constructor(
         // from there, and announcing earlier made them race the write
         EventBus.getDefault().post(ProviderApiEvent(
             ProviderApiEvent.EventType.TIMESPANS_QUERIED_PARSED_AND_SAVED))
+    }
+
+    override suspend fun isTimetableRunningOut(): Boolean {
+
+        if (!servicePointRepository.isDefaultServicePointSetUp()) {
+            return false
+        }
+
+        val servicePointId = servicePointRepository.getOrCreateDefaultServicePoint().uid
+        val latestEnd = timetableRepository.getTimetables(servicePointId)
+            .maxOfOrNull { it.sequenceEnd }
+            ?: return true
+
+        val runsOutWithin = latestEnd - (System.currentTimeMillis() / 1000)
+
+        Logger.d("Stored timetable runs out in ${runsOutWithin / 3600} hours")
+
+        return runsOutWithin < REFRESH_WHEN_LESS_THAN_SECONDS_LEFT
+    }
+
+    override suspend fun refreshTimetable(context: Context): Boolean {
+        return try {
+            saveAndReplaceTimetable(acquireDataFromProvider())
+            // the newly stored times may differ from the ones the pending alarm was armed for
+            TariffAlarmScheduler.getInstance().rearmFromStoredTimetable(context)
+            Logger.i("Timetable refreshed from provider")
+            true
+        } catch (e: Exception) {
+            Logger.e(e, "Timetable refresh failed")
+            false
+        }
     }
 }

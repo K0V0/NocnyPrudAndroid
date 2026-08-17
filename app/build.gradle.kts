@@ -109,4 +109,7 @@ dependencies {
     
     // HTTP REST Client
     implementation("com.squareup.okhttp3:okhttp:4.11.0")
+
+    // background timetable refresh scheduling
+    implementation(libs.androidx.work.runtime.ktx)
 }
