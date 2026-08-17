@@ -2,14 +2,38 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               android:orientation="vertical"
               android:layout_width="match_parent"
-              android:layout_height="match_parent" android:gravity="center">
+              android:layout_height="match_parent"
+              android:gravity="center">
+
+    <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/service_point_detail_cz_cez_area_label"/>
+
+    <!--
+        Region and code are read back by ServicePointSetupFormsPopulator, which keys the stored
+        JSON on the resource entry name of each field - so these ids are part of the data format.
+    -->
+    <Spinner
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/service_point_setup_cz_cez_area"
+            android:layout_marginBottom="@dimen/global_margin"/>
 
     <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="text"
+            android:inputType="textCapCharacters"
             android:ems="10"
-            android:id="@+id/service_point_setup_cz_cez_ean_code"
+            android:id="@+id/service_point_setup_cz_cez_code"
             android:textSize="@dimen/wizard_form_fields_font_size"
-            android:hint="@string/service_point_detail_cz_cez_ean_textfield"/>
+            android:hint="@string/service_point_detail_cz_cez_code_textfield"/>
+
+    <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/service_point_setup_cz_cez_ean_lookup_button"
+            android:layout_marginTop="@dimen/global_margin"
+            android:text="@string/service_point_detail_cz_cez_ean_lookup_button"/>
+
 </LinearLayout>

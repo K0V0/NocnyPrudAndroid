@@ -45,9 +45,23 @@ abstract class WizardActivityBase<NEXT_ACTIVITY : AppCompatActivity>(
         val fragmentTransaction: FragmentTransaction = fragmentManager.beginTransaction()
         fragmentTransaction.replace(R.id.wizardContentContainer, fragment)
         fragmentTransaction.commit()
+        // commit() alone is asynchronous, so the inflated form would not be reachable yet
+        fragmentManager.executePendingTransactions()
+        this.onFormInserted()
     }
 
-    open protected fun onNextClick() {
+    /**
+     *  Called once the step's own form is inflated and reachable through [fragment].
+     */
+    open protected fun onFormInserted() {
         // Override and implement me in descendants if needed
+    }
+
+    /**
+     *  Return false to keep the user on this step, e.g. when the form is not filled in properly.
+     */
+    open protected fun onNextClick(): Boolean {
+        // Override and implement me in descendants if needed
+        return true
     }
 }

@@ -29,10 +29,17 @@ class TimetableViewModel : ViewModel() {
 
     init {
         EventBus.getDefault().register(this)
+        // show whatever was stored by an earlier run, instead of an empty screen until the
+        // next provider refresh happens to arrive
+        loadStoredTimetable()
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)
     fun onTimetableReady(event: ProviderApiEvent) {
+        loadStoredTimetable()
+    }
+
+    private fun loadStoredTimetable() {
         viewModelScope.launch {
             val pointId = servicePointRepository.getOrCreateDefaultServicePoint()
             val entities = timetableRepository.getTimetables(pointId.uid)

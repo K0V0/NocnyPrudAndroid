@@ -11,7 +11,9 @@ interface ServicePointDao {
         const val DEFAULT_NAME = "default"
     }
 
-    @Query("INSERT INTO service_point (name) VALUES ('$DEFAULT_NAME')")
+    // OR IGNORE makes this idempotent (name is uniquely indexed), so it can be called
+    // before every write to guarantee the default row exists
+    @Query("INSERT OR IGNORE INTO service_point (name) VALUES ('$DEFAULT_NAME')")
     suspend fun createDefault()
 
     @Query("SELECT * FROM service_point WHERE name LIKE '$DEFAULT_NAME' LIMIT 1")

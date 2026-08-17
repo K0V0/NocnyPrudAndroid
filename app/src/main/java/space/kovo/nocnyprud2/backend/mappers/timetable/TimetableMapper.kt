@@ -29,7 +29,11 @@ class TimetableMapper : Mapper<List<TimetableEntity>, TimetableDto> {
         // prepare - prefill which dates we have some sequence in
         for (e in entity) {
             daysMap.putIfAbsent(epochSecondsToDateString(e.sequenceStart), ArrayList())
-            daysMap.putIfAbsent(epochSecondsToDateString(e.sequenceEnd), ArrayList())
+            // a sequence ending exactly at midnight belongs entirely to the day before it,
+            // registering its end date would add an empty day at the end of the timetable
+            if (e.sequenceEnd > getMidnightEpochSeconds(e.sequenceEnd)) {
+                daysMap.putIfAbsent(epochSecondsToDateString(e.sequenceEnd), ArrayList())
+            }
         }
 
         // split sequences going through midnight in timezone of device user
@@ -48,7 +52,9 @@ class TimetableMapper : Mapper<List<TimetableEntity>, TimetableDto> {
             } else {
                 val dateFirst = epochSecondsToDate(e.sequenceStart)
                 val dateSecond = epochSecondsToDate(e.sequenceEnd)
-                val midnightEpochSeconds = getMidnightEpochSeconds(dateFirst)
+                // the boundary is midnight at the START of the second day - taking the first
+                // day's midnight put both halves a whole day off
+                val midnightEpochSeconds = getMidnightEpochSeconds(dateSecond)
                 val startTimeFirst = epochSecondsToLocalDateTime(e.sequenceStart)
                 val endTimeFirst = epochSecondsToLocalDateTime(midnightEpochSeconds - 1)
                 val startTimeSecond = epochSecondsToLocalDateTime(midnightEpochSeconds)
@@ -60,13 +66,16 @@ class TimetableMapper : Mapper<List<TimetableEntity>, TimetableDto> {
                         endTimeFirst,
                         getHourOfDayDecimal(startTimeFirst),
                         24.0f))
-                daysMap
-                    .get(dateToDateString(dateSecond))
-                    ?.add(TimespanDto(
-                        startTimeSecond,
-                        endTimeSecond,
-                        0.0f,
-                        getHourOfDayDecimal(endTimeSecond)))
+                // nothing left to draw on the second day when the sequence ends at its midnight
+                if (e.sequenceEnd > midnightEpochSeconds) {
+                    daysMap
+                        .get(dateToDateString(dateSecond))
+                        ?.add(TimespanDto(
+                            startTimeSecond,
+                            endTimeSecond,
+                            0.0f,
+                            getHourOfDayDecimal(endTimeSecond)))
+                }
             }
         }
 

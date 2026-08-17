@@ -5,6 +5,7 @@ import kotlinx.coroutines.runBlocking
 import space.kovo.nocnyprud2.backend.repositories.settingsStorage.SettingsStorageRepositoryImpl
 import space.kovo.nocnyprud2.backend.services.httpService.HttpRequestObject
 import space.kovo.nocnyprud2.backend.services.httpService.HttpResponseHandler
+import java.lang.reflect.InvocationTargetException
 
 class ReflectionUtils {
 
@@ -14,23 +15,35 @@ class ReflectionUtils {
         private const val HTTP_REQUEST_OBJECT_CLASS_NAME = "HttpRequestObjectImpl"
         private const val HTTP_RESPONSE_HANDLER_CLASS_NAME = "HttpResponseHandlerImpl"
 
-        inline fun <reified T> loadClassByName(className: String): T? {
+        /**
+         *  Instantiates [className] using its first usable constructor.
+         *  The last failure is kept so that the real cause can be reported instead of
+         *  a bare "failed to load" - the underlying exception is what actually explains
+         *  the problem (missing setup data, broken response, ...).
+         */
+        inline fun <reified T> loadClassByName(className: String): Pair<T?, Throwable?> {
             return try {
                 val clazz = Class.forName(className).kotlin
                 val constructors = clazz.constructors
                 Logger.d("Loading $className constructors $constructors")
                 var result: T? = null
+                var lastError: Throwable? = null
                 constructors.forEach {
-                    try {
-                        result = it?.call() as T
-                    } catch (e: Exception) {
-                        Logger.d("Constructor ${it.name} skipped")
+                    if (result == null) {
+                        try {
+                            result = it?.call() as T
+                        } catch (e: Throwable) {
+                            // reflective calls wrap the real problem, unwrap it for the log
+                            val cause = (e as? InvocationTargetException)?.targetException ?: e
+                            lastError = cause
+                            Logger.e(cause, "Constructor ${it.name} of $className failed")
+                        }
                     }
                 }
-                return result
-            } catch (e: Exception) {
-                println("Failed to load class $className: ${e.message}")
-                return null
+                Pair(result, lastError)
+            } catch (e: Throwable) {
+                Logger.e(e, "Failed to load class $className")
+                Pair(null, e)
             }
         }
 
@@ -43,21 +56,17 @@ class ReflectionUtils {
         }
 
         fun getHttpRequestObject(): HttpRequestObject {
-            val result = loadClassByName<HttpRequestObject>(
-                HTTP_REQUEST_OBJECTS_PACKAGE_PATH + "." + getCurrentProviderSpecificPath() + "." + HTTP_REQUEST_OBJECT_CLASS_NAME)
-            if (result == null) {
-                throw Exception("Failed to load $HTTP_REQUEST_OBJECT_CLASS_NAME")
-            }
-            return result
+            val className = HTTP_REQUEST_OBJECTS_PACKAGE_PATH + "." +
+                    getCurrentProviderSpecificPath() + "." + HTTP_REQUEST_OBJECT_CLASS_NAME
+            val (result, error) = loadClassByName<HttpRequestObject>(className)
+            return result ?: throw IllegalStateException("Failed to load $className", error)
         }
 
         fun getHttpResponseHandler(): HttpResponseHandler {
-            val result = loadClassByName<HttpResponseHandler>(
-                HTTP_REQUEST_OBJECTS_PACKAGE_PATH + "." + getCurrentProviderSpecificPath() + "." + HTTP_RESPONSE_HANDLER_CLASS_NAME)
-            if (result == null) {
-                throw Exception("Failed to load $HTTP_RESPONSE_HANDLER_CLASS_NAME")
-            }
-            return result
+            val className = HTTP_REQUEST_OBJECTS_PACKAGE_PATH + "." +
+                    getCurrentProviderSpecificPath() + "." + HTTP_RESPONSE_HANDLER_CLASS_NAME
+            val (result, error) = loadClassByName<HttpResponseHandler>(className)
+            return result ?: throw IllegalStateException("Failed to load $className", error)
         }
     }
 }

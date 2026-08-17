@@ -18,8 +18,8 @@ class WizardFragmentBase @SuppressLint("ValidFragment") constructor(private val 
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(fragmentLayout, container, false)
         this.container = container
+        return inflater.inflate(fragmentLayout, container, false)
     }
 
     fun getContainer(): ViewGroup? = container

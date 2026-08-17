@@ -40,13 +40,17 @@ class ServicePointRepositoryImpl: ServicePointRepository {
     }
 
     override suspend fun getProviderDataForDefaultServicePoint(): String {
-        return getOrCreateDefaultServicePoint().providerFormsContent!!
+        return getOrCreateDefaultServicePoint().providerFormsContent
+            ?: throw IllegalStateException(
+                "Provider form data for the default service point is not set up yet, " +
+                        "the setup wizard has to be completed first")
     }
 
     override suspend fun setCountryForDefaultServicePoint(countryCode: String) {
 
         Logger.d("Setting country for default service point entity, result: $countryCode")
 
+        servicePointDao.createDefault()
         servicePointDao.updateDefaultCountry(countryCode)
     }
 
@@ -54,6 +58,7 @@ class ServicePointRepositoryImpl: ServicePointRepository {
 
         Logger.d("Setting energy provider for default service point entity, result: $providerCode")
 
+        servicePointDao.createDefault()
         servicePointDao.updateDefaultProvider(providerCode)
     }
 
@@ -61,6 +66,7 @@ class ServicePointRepositoryImpl: ServicePointRepository {
 
         Logger.d("Saving provider form data for default service point entity, result: $providerData")
 
+        servicePointDao.createDefault()
         servicePointDao.updateDefaultProviderFormData(providerData)
     }
 }

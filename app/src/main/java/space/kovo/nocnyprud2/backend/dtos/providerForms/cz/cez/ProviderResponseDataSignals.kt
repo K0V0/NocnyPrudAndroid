@@ -4,6 +4,8 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 data class ProviderResponseDataSignals(
-    val datum: String,
-    val casy: String
+    val datum: String? = null,
+    val casy: String? = null,
+    // the HDO command code this service point listens to - the one thing the EAN lookup exists for
+    val signal: String? = null
 )

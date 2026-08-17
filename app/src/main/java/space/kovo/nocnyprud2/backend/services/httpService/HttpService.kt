@@ -9,8 +9,16 @@ interface HttpRequestObject {
     var body: JsonObject
     var urlParameters: Map<String, Any>
 
+    /**
+     *  Extra request headers. Some provider APIs need them to answer at all - ČEZ for instance
+     *  keys the language of the returned day names off "x-locale".
+     */
+    val headers: Map<String, String>
+        get() = emptyMap()
+
     fun toInfo(): String {
-        return "Request -> URL: $url, UrlParameters: $urlParameters, Method: $method, Body: $body"
+        return "Request -> URL: $url, UrlParameters: $urlParameters, Method: $method, " +
+                "Headers: ${headers.keys}, Body: $body"
     }
 }
 

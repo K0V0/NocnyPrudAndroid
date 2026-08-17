@@ -30,6 +30,26 @@
 
     <!-- CZ/CEZ-->
     <string name="service_point_detail_cz_cez_ean_textfield">EAN Code</string>
+    <string name="service_point_detail_cz_cez_code_textfield">HDO code (povel)</string>
+    <string name="service_point_detail_cz_cez_area_label">Distribution region</string>
+    <string name="service_point_detail_cz_cez_ean_lookup_button">I don\'t know my code — look it up by EAN</string>
+
+    <!-- CZ/CEZ - EAN to HDO code lookup screen -->
+    <string name="cz_cez_ean_lookup_title">Find Your HDO code</string>
+    <string name="cz_cez_ean_lookup_text">Enter Your EAN and rewrite the code from the picture. ČEZ requires this only once, to tell us which HDO code belongs to Your service point.</string>
+    <string name="cz_cez_ean_lookup_captcha_textfield">Code from the picture</string>
+    <string name="cz_cez_ean_lookup_button_search">Search</string>
+    <string name="cz_cez_ean_lookup_button_refresh_captcha">New picture</string>
+    <string name="cz_cez_ean_lookup_searching">Searching…</string>
+    <string name="cz_cez_ean_lookup_error_empty_ean">Please fill in Your EAN code</string>
+    <string name="cz_cez_ean_lookup_error_empty_captcha">Please rewrite the code from the picture</string>
+    <string name="cz_cez_ean_lookup_error_captcha">Wrong code from the picture, please try again</string>
+    <string name="cz_cez_ean_lookup_error_not_found">No HDO code found for this EAN</string>
+    <string name="cz_cez_ean_lookup_error_general">Lookup failed, please try again</string>
+    <string name="cz_cez_ean_lookup_error_captcha_load">Could not load the picture, please try again</string>
+
+    <!-- CZ/CEZ - validation on setup screen -->
+    <string name="service_point_setup_error_missing_code">Please fill in Your HDO code, or look it up by EAN</string>
 
 
 </resources>

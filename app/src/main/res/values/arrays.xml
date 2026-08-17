@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!--
+        ČEZ distribution regions.
+
+        Keys are the values the ČEZ GraphQL API expects in the "area" variable, labels are what
+        the user picks from. The two arrays are index-aligned - see KeyLabelSpinnerAdapter.
+
+        The region is NOT optional: the very same HDO code resolves to a different (but equally
+        plausible looking) timetable in every region, so picking the wrong one silently produces
+        a wrong timetable instead of an error.
+    -->
+    <string-array name="cz_cez_area_keys">
+        <item>sever</item>
+        <item>zapad</item>
+        <item>stred</item>
+        <item>vychod</item>
+        <item>morava</item>
+    </string-array>
+
+    <string-array name="cz_cez_area_labels">
+        <item>Sever</item>
+        <item>Západ</item>
+        <item>Střed</item>
+        <item>Východ</item>
+        <item>Morava</item>
+    </string-array>
+
+</resources>

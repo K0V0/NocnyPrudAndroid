@@ -12,14 +12,19 @@ inline fun <reified T: Activity> Activity.handleMoveToNextActivityButton() {
         .setOnClickListener { startActivity(Intent(this, T::class.java)) }
 }
 
+/**
+ *  [listenerRunnable] returning false keeps the user on the current step, so that a step can
+ *  refuse to move on when its form is not filled in properly.
+ */
 fun <T: Activity> Activity.handleMoveToNextActivityButton(
     nextActivityClass: Class<T>,
-    listenerRunnable: () -> Unit
+    listenerRunnable: () -> Boolean
 ) {
     this.findViewById<Button>(R.id.wizardBaseButtonNext)
         .setOnClickListener {
-            listenerRunnable()
-            startActivity(Intent(this, nextActivityClass))
+            if (listenerRunnable()) {
+                startActivity(Intent(this, nextActivityClass))
+            }
         }
 }
 

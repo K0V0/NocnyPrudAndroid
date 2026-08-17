@@ -42,18 +42,17 @@ class TimetableServiceImpl private constructor(
     override fun acquireDataFromProvider(): List<TimetableEntity> {
         val httpRequestObject: HttpRequestObject = ReflectionUtils.getHttpRequestObject()
         val response: String = httpService.perform(httpRequestObject)
-        val result: List<TimetableEntity> = ReflectionUtils.getHttpResponseHandler().onSuccess(response)
-        EventBus.getDefault().post(ProviderApiEvent(
-            ProviderApiEvent.EventType.TIMESPANS_QUERIED_PARSED_AND_SAVED))
-        return result;
+        return ReflectionUtils.getHttpResponseHandler().onSuccess(response)
     }
 
     override fun saveAndReplaceTimetable(data: List<TimetableEntity>) {
         runBlocking {
-            val countryCode = settingsStorageRepository.getServicePointCountry()
-            val providerCode = settingsStorageRepository.getServicePointProvider()
             val servicePointId = servicePointRepository.getOrCreateDefaultServicePoint().uid
             timetableRepository.replaceTimetables(servicePointId, data)
         }
+        // announced only once the rows are actually in the database - listeners read them back
+        // from there, and announcing earlier made them race the write
+        EventBus.getDefault().post(ProviderApiEvent(
+            ProviderApiEvent.EventType.TIMESPANS_QUERIED_PARSED_AND_SAVED))
     }
 }
