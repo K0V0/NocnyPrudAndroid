@@ -50,8 +50,17 @@ abstract class WizardActivityBase<NEXT_ACTIVITY : AppCompatActivity>(
         this.onFormInserted()
     }
 
+    override fun onStart() {
+        super.onStart()
+        // A form inserted during onCreate is not inflated yet at that point - fragment views are
+        // only created once the activity starts - so the hook has to run again here. It is
+        // documented as safe to apply repeatedly for exactly this reason.
+        this.onFormInserted()
+    }
+
     /**
      *  Called once the step's own form is inflated and reachable through [fragment].
+     *  May run more than once, so implementations have to be safe to apply repeatedly.
      */
     open protected fun onFormInserted() {
         // Override and implement me in descendants if needed

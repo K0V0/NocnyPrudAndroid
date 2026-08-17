@@ -39,6 +39,27 @@ class ServicePointRepositoryImpl: ServicePointRepository {
         return entity!!
     }
 
+    override suspend fun isDefaultServicePointSetUp(): Boolean {
+        // deliberately NOT getOrCreate: merely asking the question must not create a row
+        val entity: ServicePointEntity = servicePointDao.getDefault() ?: return false
+
+        // country and provider are stored as soon as they are picked, so they alone would also
+        // report a wizard the user walked out of halfway - only the provider form data, which is
+        // written by the very last step, means the wizard actually ran to the end
+        val setUp = !entity.countryCode.isNullOrBlank() &&
+                !entity.providerCode.isNullOrBlank() &&
+                hasProviderFormData(entity.providerFormsContent)
+
+        Logger.d("Default service point set up: $setUp, entity: $entity")
+
+        return setUp
+    }
+
+    private fun hasProviderFormData(providerFormsContent: String?): Boolean {
+        // an empty JSON object is what an unfilled form serializes to
+        return !providerFormsContent.isNullOrBlank() && providerFormsContent.trim() != "{}"
+    }
+
     override suspend fun getProviderDataForDefaultServicePoint(): String {
         return getOrCreateDefaultServicePoint().providerFormsContent
             ?: throw IllegalStateException(

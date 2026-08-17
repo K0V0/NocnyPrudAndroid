@@ -5,11 +5,14 @@ import com.orhanobut.logger.Logger
 import org.greenrobot.eventbus.EventBus
 import space.kovo.nocnyprud2.backend.eventsSubscribers.GlobalEventSubscribers
 import space.kovo.nocnyprud2.backend.inits.*
+import space.kovo.nocnyprud2.backend.notifications.TariffNotifications
+import space.kovo.nocnyprud2.backend.workers.TimetableRefreshWorker
 
 class MainApplication : Application() {
 
     private val inits: List<Init> = listOf(
         LoggerInit(),
+        AppContextInit(),
         SettingsStorageInit(),
         DatabaseInit(),
         YamlMapperInit(),
@@ -20,6 +23,8 @@ class MainApplication : Application() {
         super.onCreate()
         runInits()
         registerGlobalEventHandlers()
+        TariffNotifications.createChannel(this)
+        TimetableRefreshWorker.schedule(this)
     }
 
     private fun runInits() {

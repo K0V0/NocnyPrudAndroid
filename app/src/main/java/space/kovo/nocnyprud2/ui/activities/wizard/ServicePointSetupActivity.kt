@@ -14,17 +14,16 @@ import com.orhanobut.logger.Logger
 import org.greenrobot.eventbus.EventBus
 import space.kovo.nocnyprud2.R
 import space.kovo.nocnyprud2.backend.events.ServicePointEvent
-import space.kovo.nocnyprud2.ui.activities.timetable.TimetableActivity
 import space.kovo.nocnyprud2.ui.utils.KeyLabelSpinnerAdapter
 import space.kovo.nocnyprud2.ui.utils.ServicePointSetupFormsPopulator
 import space.kovo.nocnyprud2.ui.viewModels.wizard.ServicePointSetupViewModel
 
-class ServicePointSetupActivity : WizardActivityBase<TimetableActivity>(
+class ServicePointSetupActivity : WizardActivityBase<PermissionsActivity>(
     R.string.service_point_setup_title,
     R.string.service_point_setup_text,
     R.string.service_point_setup_button_next,
     R.layout.wizard_service_point_setup_fragment_dummy,
-    TimetableActivity::class.java
+    PermissionsActivity::class.java
 ) {
     private val viewModel: ServicePointSetupViewModel by viewModels()
 

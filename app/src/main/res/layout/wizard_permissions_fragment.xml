@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+
+    <!-- notifications -->
+    <TextView
+            android:id="@+id/permissionsNotificationsStatus"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"/>
+
+    <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/permissions_notifications_text"/>
+
+    <Button
+            android:id="@+id/permissionsNotificationsButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/global_margin"
+            android:text="@string/permissions_button_allow"/>
+
+    <!-- exact alarms -->
+    <TextView
+            android:id="@+id/permissionsAlarmsStatus"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"/>
+
+    <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/permissions_alarms_text"/>
+
+    <Button
+            android:id="@+id/permissionsAlarmsButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/global_margin"
+            android:text="@string/permissions_button_allow"/>
+
+    <!-- battery optimisation -->
+    <TextView
+            android:id="@+id/permissionsBatteryStatus"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"/>
+
+    <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/permissions_battery_text"/>
+
+    <Button
+            android:id="@+id/permissionsBatteryButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/permissions_button_allow"/>
+
+</LinearLayout>

@@ -4,6 +4,19 @@
 
     <uses-permission android:name="android.permission.INTERNET"/>
 
+    <!-- notifications about the low tariff starting / ending (runtime permission since API 33) -->
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS"/>
+
+    <!--
+        The notification has to land at a given minute, which only an exact alarm can do -
+        WorkManager deliberately batches work into Doze maintenance windows.
+        Since API 31 the user may revoke this, so it is always checked at runtime.
+    -->
+    <uses-permission android:name="android.permission.SCHEDULE_EXACT_ALARM"/>
+
+    <!-- alarms do not survive a reboot, they have to be armed again -->
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
+
     <application
             android:name=".MainApplication"
             android:allowBackup="true"
@@ -60,11 +73,33 @@
         </activity>
 
         <activity
+                android:name=".ui.activities.wizard.PermissionsActivity"
+                android:label="@string/app_name"
+                android:theme="@style/Theme.NocnyPrud2">
+        </activity>
+
+        <activity
                 android:name=".ui.activities.timetable.TimetableActivity"
                 android:label="@string/app_name"
                 android:theme="@style/Theme.NocnyPrud2">
         </activity>
 
+        <!-- background work -->
+
+        <receiver
+                android:name=".backend.alarms.TariffAlarmReceiver"
+                android:exported="false"/>
+
+        <receiver
+                android:name=".backend.receivers.BootReceiver"
+                android:enabled="true"
+                android:exported="false">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED"/>
+                <!-- some vendors send this instead after an app update -->
+                <action android:name="android.intent.action.MY_PACKAGE_REPLACED"/>
+            </intent-filter>
+        </receiver>
 
     </application>
 
