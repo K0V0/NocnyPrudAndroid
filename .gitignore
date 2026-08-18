@@ -12,6 +12,8 @@
 
 # Package Files #
 *.jar
+# ...but the Gradle wrapper jar has to be in the repo, otherwise a fresh clone cannot build
+!gradle/wrapper/gradle-wrapper.jar
 *.war
 *.nar
 *.ear
@@ -22,6 +24,13 @@
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
 replay_pid*
+
+# Signing material - NEVER commit these.
+# The keystore IS the app's identity: lose it and you can no longer publish updates of this
+# app, leak it and someone else can publish updates as you. Back it up somewhere safe instead.
+*.jks
+*.keystore
+keystore.properties
 
 *.iml
 .gradle

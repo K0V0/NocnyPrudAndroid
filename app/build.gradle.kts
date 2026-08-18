@@ -1,3 +1,5 @@
+import java.util.Properties
+
 plugins {
 
     // default project plugins
@@ -7,6 +9,20 @@ plugins {
     // required by ROOM (SQLite) database
     alias(libs.plugins.org.jetbrains.kotlin.kapt)
 }
+
+/**
+ *  Signing credentials are kept out of the repository - see keystore.properties.template for
+ *  what the file has to contain. A clone without it still builds, the release build just comes
+ *  out unsigned instead of failing.
+ */
+val keystorePropertiesFile = rootProject.file("keystore.properties")
+val keystoreProperties = Properties().apply {
+    if (keystorePropertiesFile.exists()) {
+        keystorePropertiesFile.inputStream().use { load(it) }
+    }
+}
+val hasSigningConfig = keystoreProperties.getProperty("storeFile")
+    ?.let { rootProject.file(it).exists() } ?: false
 
 android {
     namespace = "space.kovo.nocnyprud2"
@@ -25,10 +41,33 @@ android {
         }
     }
 
+    signingConfigs {
+        if (hasSigningConfig) {
+            create("release") {
+                storeFile = rootProject.file(keystoreProperties.getProperty("storeFile"))
+                storePassword = keystoreProperties.getProperty("storePassword")
+                keyAlias = keystoreProperties.getProperty("keyAlias")
+                keyPassword = keystoreProperties.getProperty("keyPassword")
+
+                // v1 (JAR signing) only matters below API 24 and the build skips it anyway at
+                // this minSdk; v2/v3 are what every supported device verifies with
+                enableV1Signing = false
+                enableV2Signing = true
+                enableV3Signing = true
+            }
+        }
+    }
+
     buildTypes {
         release {
             isMinifyEnabled = false
             proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
+
+            if (hasSigningConfig) {
+                signingConfig = signingConfigs.getByName("release")
+            } else {
+                logger.warn("No keystore.properties found - the release build will NOT be signed")
+            }
         }
     }
     compileOptions {
